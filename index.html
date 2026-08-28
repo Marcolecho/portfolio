@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio 3D - Git Tree</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="webgl-canvas"></canvas>
+
+  <aside id="sidebar">
+    <h2>Explorateur Git</h2>
+    <ul id="tree-list"></ul>
+  </aside>
+
+  <div id="details-overlay" class="hidden">
+    <button id="close-btn">&times;</button>
+    <span id="detail-category" class="badge"></span>
+    <h1 id="detail-title"></h1>
+    <p id="detail-date" class="date"></p>
+    <p id="detail-description"></p>
+  </div>
+
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>

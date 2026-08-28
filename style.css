@@ -1,0 +1,92 @@
+* { 
+  box-sizing: border-box; 
+  margin: 0; 
+  padding: 0; 
+}
+
+body { 
+  overflow: hidden; 
+  font-family: 'Segoe UI', sans-serif; 
+  background: #0a0a12; 
+  color: #fff; 
+}
+
+#webgl-canvas { 
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  width: 100vw; 
+  height: 100vh; 
+  z-index: 1; 
+}
+
+#sidebar {
+  position: absolute; 
+  top: 20px; 
+  left: 20px; 
+  z-index: 10; 
+  width: 260px;
+  background: rgba(15, 15, 25, 0.85); 
+  backdrop-filter: blur(10px);
+  padding: 20px; 
+  border-radius: 12px; 
+  border: 1px solid rgba(0, 243, 255, 0.2);
+}
+
+#sidebar ul { 
+  list-style: none; 
+  margin-top: 15px; 
+}
+
+#sidebar li { 
+  padding: 10px; 
+  margin: 5px 0; 
+  background: rgba(255,255,255,0.05); 
+  cursor: pointer; 
+  border-radius: 6px; 
+  transition: 0.3s; 
+}
+
+#sidebar li:hover { 
+  background: rgba(0, 243, 255, 0.2); 
+  color: #00f3ff; 
+}
+
+#details-overlay {
+  position: absolute; 
+  bottom: 40px; 
+  right: 40px; 
+  z-index: 10; 
+  width: 350px;
+  background: rgba(10, 10, 18, 0.95); 
+  border: 1px solid #00f3ff; 
+  border-radius: 12px;
+  padding: 24px; 
+  box-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
+  transition: opacity 0.4s ease;
+}
+
+#details-overlay.hidden { 
+  opacity: 0; 
+  pointer-events: none; 
+}
+
+.badge { 
+  background: #00f3ff; 
+  color: #000; 
+  padding: 4px 8px; 
+  border-radius: 4px; 
+  font-weight: bold; 
+  font-size: 0.8rem; 
+}
+
+#close-btn { 
+  position: absolute; 
+  top: 10px; 
+  right: 15px; 
+  background: none; 
+  border: none; 
+  color: #fff; 
+  font-size: 1.5rem; 
+  cursor: pointer; 
+}
