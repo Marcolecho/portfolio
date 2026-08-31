@@ -38,7 +38,7 @@ export class SceneManager {
     const ambientLight = new THREE.AmbientLight(0xffffff, 2);
     this.scene.add(ambientLight);
 
-    const gridHelper = new THREE.GridHelper(100, 100, 0xffffff, 0xffffff);
+    const gridHelper = new THREE.GridHelper(1000, 1000, 0xffffff, 0xffffff);
     gridHelper.position.y = 0;
     gridHelper.material.transparent = true;
     gridHelper.material.opacity = 0.2; // Opacité douce pour laisser ressortir les néons
