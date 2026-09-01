@@ -27,6 +27,19 @@ export class ShapeFactory {
         return cylinder;
     }
 
+    createSphere({position, radius, segments, color, intensity}) {
+        console.log(position)
+        const geometry = new THREE.SphereGeometry(radius, segments, segments);
+        const material = this.createNeonMaterial(color, intensity);
+        const sphere = new THREE.Mesh(geometry, material);
+
+        sphere.position.copy(position);
+        this.scene.add(sphere);
+
+        return sphere;
+    }
+    
+
     createCable({p1, p2, radius, color, intensity}) {
         const path = new THREE.LineCurve3(p1, p2);
 
@@ -41,7 +54,11 @@ export class ShapeFactory {
     }
 
     create(type, config) {
+        console.log(config)
         switch (type) {
+        case 'sphere':
+            
+            return this.createSphere(config);
         case 'cylinder':
             return this.createCylinder(config);
         case 'cable':

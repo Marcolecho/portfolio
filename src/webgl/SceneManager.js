@@ -8,7 +8,7 @@ export class SceneManager {
   constructor(canvas) {
     this.canvas = canvas;
     this.scene = new THREE.Scene();
-    this.scene.fog = new THREE.FogExp2(0x0a0a12, 0.03);
+    this.scene.fog = new THREE.FogExp2(0x0a0a12, 0.02);
 
     this.camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
     this.camera.position.set(-15, 17, 17); 
@@ -21,8 +21,8 @@ export class SceneManager {
     this.controls.enableZoom = false;
     this.controls.enableDamping = true;
     this.controls.dampingFactor = 0.05;
-    this.controls.minDistance = 5;
-    this.controls.maxDistance = 40;
+    this.controls.minDistance = 50;
+    this.controls.maxDistance = 200;
     this.controls.minPolarAngle = Math.PI / 4;
     this.controls.maxPolarAngle = Math.PI / 3;
     this.controls.screenSpacePanning = false;

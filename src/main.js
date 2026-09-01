@@ -13,7 +13,7 @@ const treeMap = new Map();
 gitTreeData.forEach(element => treeMap.set(element.id, element));
 
 gitTreeData.forEach(element => {
-  const positionA = new THREE.Vector3(element.position.x, element.position.y, element.position.z);
+  const positionElement = new THREE.Vector3(element.position.x, element.position.y, element.position.z);
   
   let colorElementON = 0xFFFFFF;
   let colorElementOFF = 0xBDBDBD;
@@ -26,7 +26,14 @@ gitTreeData.forEach(element => {
     default: console.warn(`unknown family: ${element.family}`);
   }
 
-  shapeFactory.create('cylinder', {position: positionA, radiusTop: 1, radiusBottom: 1, height: 1, radialSegments: 6, color: colorElementOFF, intensity: -0.2});
+  switch (element.type) {
+    case "root": shapeFactory.create('cylinder', {position: positionElement, radiusTop: 1, radiusBottom: 1, height: 1, radialSegments: 6, color: colorElementON, intensity: 1});; break;
+    case "branch": shapeFactory.create('cylinder', {position: positionElement, radiusTop: 1, radiusBottom: 1, height: 1, radialSegments: 6, color: colorElementON, intensity: 1});; break;
+    case "leaf": shapeFactory.create('sphere', {position: positionElement, radius: 0.8, segments: 16, color: colorElementON, intensity: 1});; break;
+    default: console.warn(`unknown family: ${element.family}`);
+  }
+
+  
 
   element.children.forEach(childId => {
     const childElement = treeMap.get(childId);
@@ -34,7 +41,7 @@ gitTreeData.forEach(element => {
     if (childElement) {
       const positionB = new THREE.Vector3(childElement.position.x, childElement.position.y, childElement.position.z);
       
-      shapeFactory.create('cable', {p1: positionA, p2: positionB, radius: 0.1, color: colorElementOFF, intensity: 0});
+      shapeFactory.create('cable', {p1: positionElement, p2: positionB, radius: 0.1, color: 0xBDBDBD, intensity: 0});
     }
   });
 });
