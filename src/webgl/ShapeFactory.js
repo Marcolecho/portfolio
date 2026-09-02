@@ -15,8 +15,8 @@ export class ShapeFactory {
         });
     }
 
-    createCylinder({position, radiusTop, radiusBottom, height, radialSegments, color, intensity}) {
-        const geometry = new THREE.CylinderGeometry(radiusTop, radiusBottom, height, radialSegments);
+    createCylinder({position, radius, height, radialSegments, color, intensity}) {
+        const geometry = new THREE.CylinderGeometry(radius, radius, height, radialSegments);
         
         const material = this.createNeonMaterial(color, intensity);
         
@@ -28,7 +28,6 @@ export class ShapeFactory {
     }
 
     createSphere({position, radius, segments, color, intensity}) {
-        console.log(position)
         const geometry = new THREE.SphereGeometry(radius, segments, segments);
         const material = this.createNeonMaterial(color, intensity);
         const sphere = new THREE.Mesh(geometry, material);
@@ -54,18 +53,18 @@ export class ShapeFactory {
     }
 
     create(type, config) {
-        console.log(config)
         switch (type) {
-        case 'sphere':
-            
-            return this.createSphere(config);
-        case 'cylinder':
-            return this.createCylinder(config);
-        case 'cable':
-            return this.createCable(config);
-        default:
-            console.warn(`unknown shape: ${type}`);
-            return null;
+            case 'root':
+                return this.createCylinder(config);
+            case 'branch':
+                return this.createCylinder(config);
+            case 'leaf':
+                return this.createSphere(config);
+            case 'cable':
+                return this.createCable(config);
+            default:
+                console.warn(`unknown shape: ${type}`);
+                return null;
         }
     }
 }
