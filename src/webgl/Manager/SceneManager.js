@@ -8,7 +8,7 @@ export class SceneManager {
   constructor(scene, canvas, onNodeHover) {
     this.canvas = canvas;
     this.scene = scene;
-    this.scene.fog = new THREE.FogExp2(0x0a0a12, 0.018);
+    //this.scene.fog = new THREE.FogExp2(0x0a0a12, 0.025);
 
     this.camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
     this.camera.position.set(-15, 17, 17); 
@@ -35,13 +35,20 @@ export class SceneManager {
     this.composer.addPass(renderScene);
     this.composer.addPass(bloomPass);
 
-    const ambientLight = new THREE.AmbientLight(0xffffff, 2);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 1);
     this.scene.add(ambientLight);
 
-    const gridHelper = new THREE.GridHelper(1000, 1000, 0xffffff, 0xffffff);
+    const gridHelper = new THREE.GridHelper(1000, 1000, 0x444444, 0x222222);
     gridHelper.position.y = 0;
-    gridHelper.material.transparent = true;
-    gridHelper.material.opacity = 0.2; // Opacité douce pour laisser ressortir les néons
+
+    gridHelper.material = new THREE.LineBasicMaterial({
+      color: 0x333333,
+      transparent: true,
+      opacity: 0.3,
+      toneMapped: false
+    });
+
+    gridHelper.material.toneMapped = false;
     this.scene.add(gridHelper);
 
     this.onNodeHover = onNodeHover; 

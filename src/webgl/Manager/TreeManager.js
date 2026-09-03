@@ -11,8 +11,8 @@ export class TreeManager {
         this.shapeFactory = new ShapeFactory(this.scene);
         this.listNodeElement = []
         this.listLinkElement = []
-        this.intensityON = 3
-        this.intensityOFF = 0.2
+        this.intensityON = 1
+        this.intensityOFF = 0.01
         this.baseColorElementON = 0x9E9E9E
         this.baseColorElementOFF = 0x9E9E9E
         this.currentHighlightedPath = []
