@@ -3,6 +3,7 @@ import { gitTreeData } from '../../data/gitTreeData.js';
 import { NodeElement } from '../../class/treeClass/NodeElement.js';
 import { ShapeFactory } from '../ShapeFactory.js';
 import { LinkElement } from '../../class/treeClass/LinkElement.js';
+import gsap from 'gsap';
 
 export class TreeManager {
     constructor(scene) {
@@ -15,6 +16,7 @@ export class TreeManager {
         this.baseColorElementON = 0xFFFFFF
         this.baseColorElementOFF = 0xBDBDBD
         this.currentHighlightedPath = []
+        this.currentNodeId = null
     }
 
     createTree(){
@@ -109,41 +111,64 @@ export class TreeManager {
         this.glowElement()
     }
 
-    glowElement(){
-        const stepDelay = 0.02
+    glowElement() {
+        const stepDelay = 0.02;
         let currentDelay = 0;
-        const elementLight = this.currentHighlightedPath.reverse()
-            elementLight.forEach((element) => {
-                currentDelay += stepDelay;
-                element.setGlow(true, currentDelay)
-        })
+
+        // Créer une copie ([...]) pour ne pas muter/inverser l'original à chaque appel
+        const elementLight = [...this.currentHighlightedPath].reverse();
+
+        elementLight.forEach((element) => {
+            currentDelay += stepDelay;
+            element.setGlow(true, currentDelay);
+        });
     }
-    
 
-
-    highlightPathToNode(nodeSelected) {
-        console.log(nodeSelected)
-        if (nodeSelected == undefined){
-            this.resetHighlight()
+    highlightPathToNode(nodeSelected) { 
+        if (!nodeSelected) {
+            if (this.currentNodeId !== null) {
+                this.resetHighlight();
+                this.currentNodeId = null
+            }
             return;
         } 
 
-        const nodeObjSelected =  this.listNodeElement.find(e => e.id == nodeSelected)
-        if(nodeObjSelected.type != "leaf") return;
+        const nodeObjSelected = this.listNodeElement.find(e => e.id == nodeSelected);
+        if (!nodeObjSelected || nodeObjSelected.type !== "leaf") {
+            if (this.currentNodeId !== null) {
+                this.resetHighlight();
+            }
+            return;
+        }
 
-        if (this.currentHighlightedPath[0] === nodeSelected) return;
+        if (this.currentNodeId === nodeObjSelected.id) {
+            return; 
+        }
+
+        this.currentNodeId = nodeObjSelected.id;
 
         this.resetHighlight();
 
-        const listElementToGlow = this.pathFinder(nodeObjSelected)
-
-        this.lightPath(listElementToGlow)
+        const listElementToGlow = this.pathFinder(nodeObjSelected);
+        this.lightPath(listElementToGlow);
     }
 
     resetHighlight() {
+
         this.currentHighlightedPath.forEach(node => {
-            node.setGlow(false);
+            if (node.mesh && node.mesh.material) {
+                gsap.killTweensOf(node.mesh.material);
+                if (node.mesh.material.color) {
+                    gsap.killTweensOf(node.mesh.material.color);
+                }
+                if (node.mesh.material.emissive) {
+                    gsap.killTweensOf(node.mesh.material.emissive);
+                }
+            }
+
+            node.setGlow(false, 0);
         });
+
         this.currentHighlightedPath = [];
     }
 }
