@@ -10,14 +10,13 @@ export class TreeManager {
         this.shapeFactory = new ShapeFactory(this.scene);
         this.listNodeElement = []
         this.listLinkElement = []
-        this.intensityON = 1
-        this.intensityOFF = -0.1
+        this.intensityON = 2
+        this.intensityOFF = 0.3
         this.baseColorElementON = 0xFFFFFF
         this.baseColorElementOFF = 0xBDBDBD
     }
 
     createTree(){
-
         gitTreeData.forEach(element => {
             const positionElement = new THREE.Vector3(element.position.x, element.position.y, element.position.z);
             
@@ -35,13 +34,13 @@ export class TreeManager {
             let mesh;
             switch (element.type) {
                 case "root": 
-                    mesh = this.shapeFactory.create('root', {position: positionElement, radius: 1, height: 1, radialSegments: 6, color: colorElementON, intensity: this.intensityON}); 
+                    mesh = this.shapeFactory.create('root', {position: positionElement, radius: 1, height: 1, radialSegments: 6, color: colorElementON, intensity: this.intensityOFF}); 
                     break;
                 case "branch": 
-                    mesh = this.shapeFactory.create('branch', {position: positionElement, radius: 1, height: 1, radialSegments: 6, color: colorElementON, intensity: this.intensityON}); 
+                    mesh = this.shapeFactory.create('branch', {position: positionElement, radius: 1, height: 1, radialSegments: 6, color: colorElementOFF, intensity: this.intensityOFF}); 
                     break;
                 case "leaf": 
-                    mesh = this.shapeFactory.create('leaf', {position: positionElement, radius: 0.8, segments: 16, color: colorElementON, intensity: this.intensityON});
+                    mesh = this.shapeFactory.create('leaf', {position: positionElement, radius: 0.8, segments: 16, color: colorElementOFF, intensity: this.intensityOFF});
                     break;
                 default: 
                     console.warn(`unknown family: ${element.family}`);
@@ -58,7 +57,8 @@ export class TreeManager {
                 const childrenObj = this.listNodeElement.find(e => e.id == children);
                 if (childrenObj){
                     mesh = this.shapeFactory.create('cable', {p1: parentObj.positionOrigin, p2: childrenObj.positionOrigin, radius: 0.1, color: this.baseColorElementOFF, intensity: this.intensityOFF});
-                    this.listLinkElement.push(new LinkElement('cable', parentObj, childrenObj, this.baseColorElementON, this.baseColorElementOFF, this.intensityON, this.intensityOFF, mesh));
+                    const cable = new LinkElement('cable', parentObj, childrenObj, this.baseColorElementON, this.baseColorElementOFF, this.intensityON, this.intensityOFF, mesh);
+                    this.listLinkElement.push(cable);
 
                     parentObj.addChildren(childrenObj);
                     childrenObj.addParent(parentObj);
@@ -72,7 +72,7 @@ export class TreeManager {
         if (!nodeSelected || visited.has(nodeSelected)) return [];
         
         visited.add(nodeSelected);
-
+        console.log(nodeSelected)
         if (nodeSelected.type === "root" || !nodeSelected.parents || nodeSelected.parents.length === 0) {
             return [nodeSelected];
         }
@@ -89,9 +89,12 @@ export class TreeManager {
     lightPath(listNodes){
         for(let i=0; i < listNodes.length; i+=1)
         {
-            console.log(listNodes[i])
+            //console.log(listNodes[i])
+            listNodes[i].setGlow(true)
             const linkToLight = this.listLinkElement.find(link => link.NodeElement1 == listNodes[i] && link.NodeElement2 == listNodes[i+1] || link.NodeElement1 == listNodes[i+1] && link.NodeElement2 == listNodes[i])
-            console.log(linkToLight)
+            if(linkToLight)
+                linkToLight.setGlow(true)
+            //console.log(linkToLight)
         }
     }
 }

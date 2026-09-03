@@ -21,7 +21,7 @@ export class SceneManager {
     this.controls.enableZoom = false;
     this.controls.enableDamping = true;
     this.controls.dampingFactor = 0.05;
-    this.controls.minDistance = 500;
+    this.controls.minDistance = 50;
     this.controls.maxDistance = 200;
     this.controls.minPolarAngle = Math.PI / 4;
     this.controls.maxPolarAngle = Math.PI / 3;

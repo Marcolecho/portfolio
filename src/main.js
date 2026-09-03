@@ -6,7 +6,7 @@ const scenemanager = new SceneManager(canvas);
 const treeManager = new TreeManager(scenemanager.getScene())
 
 const elements = treeManager.createTree()
-const element = elements[0][6]
+const element = elements[0][24]
 const pathLight = treeManager.pathFinder(element)
 treeManager.lightPath(pathLight.reverse())
 
