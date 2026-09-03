@@ -90,3 +90,49 @@ body {
   font-size: 1.5rem; 
   cursor: pointer; 
 }
+
+
+
+
+#file-explorer {
+  font-family: monospace;
+  color: #fff;
+  user-select: none;
+}
+
+/* Dossier parent */
+details.folder-node {
+  margin-left: 10px;
+  margin-top: 4px;
+}
+
+/* Titre du dossier */
+summary {
+  cursor: pointer;
+  padding: 4px;
+  list-style: none; /* Cache la flèche par défaut pour la personnaliser */
+}
+
+summary:hover {
+  color: #00f3ff;
+}
+
+/* Conteneur d'enfants (Création de l'indentation sous-dossiers) */
+.folder-children {
+  padding-left: 15px;
+  border-left: 1px dashed rgba(255, 255, 255, 0.2); /* Ligne arborescente */
+}
+
+/* Fichier simple */
+.file-node {
+  padding: 4px 8px;
+  margin-left: 15px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.file-node:hover {
+  background: rgba(0, 243, 255, 0.2);
+  color: #00f3ff;
+}

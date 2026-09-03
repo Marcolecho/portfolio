@@ -7,7 +7,7 @@ export class NodeElement extends Element{
     this.name = name
     this.positionOrigin = positionOrigin;
     this.childrens = []
-    this.parents = []
+    this.parent = null
   }
 
   addChildren(node){
@@ -15,6 +15,6 @@ export class NodeElement extends Element{
   }
 
   addParent(node){
-    this.parents.push(node)
+    this.parent = node
   }
 }

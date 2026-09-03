@@ -8,7 +8,7 @@ export class SceneManager {
   constructor(scene, canvas, onNodeHover) {
     this.canvas = canvas;
     this.scene = scene;
-    this.scene.fog = new THREE.FogExp2(0x0a0a12, 0.02);
+    this.scene.fog = new THREE.FogExp2(0x0a0a12, 0.018);
 
     this.camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
     this.camera.position.set(-15, 17, 17); 
@@ -49,7 +49,7 @@ export class SceneManager {
     this.mouse = new THREE.Vector2();
 
     window.addEventListener('resize', () => this.onWindowResize());
-    window.addEventListener('pointermove', (e) => this.onPointerMove(e));
+    canvas.addEventListener('pointermove', (e) => this.onPointerMove(e)); // trouver un moyen de lock le chemin en surbrillance si cliqué (popup mission ouvert)
   }
 
   onPointerMove(event) {

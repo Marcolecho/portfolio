@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import { gitTreeData } from '../../data/gitTreeData.js';
+
 import { NodeElement } from '../../class/treeClass/NodeElement.js';
 import { ShapeFactory } from '../ShapeFactory.js';
 import { LinkElement } from '../../class/treeClass/LinkElement.js';
@@ -11,33 +11,33 @@ export class TreeManager {
         this.shapeFactory = new ShapeFactory(this.scene);
         this.listNodeElement = []
         this.listLinkElement = []
-        this.intensityON = 2
-        this.intensityOFF = 0.3
-        this.baseColorElementON = 0xFFFFFF
-        this.baseColorElementOFF = 0xBDBDBD
+        this.intensityON = 3
+        this.intensityOFF = 0.2
+        this.baseColorElementON = 0x9E9E9E
+        this.baseColorElementOFF = 0x9E9E9E
         this.currentHighlightedPath = []
         this.currentNodeId = null
     }
 
-    createTree(){
+    createTree(gitTreeData){
         gitTreeData.forEach(element => {
             const positionElement = new THREE.Vector3(element.position.x, element.position.y, element.position.z);
             
             let colorElementON = this.baseColorElementON;
             let colorElementOFF = this.baseColorElementOFF;
             switch (element.family) {
-                case "Base": colorElementON = 0xFFFFFF; colorElementOFF = 0xFFFFFF; break;
-                case "Competences": colorElementON = 0x45CDFF; colorElementOFF = 0x1C7FA3; break;
-                case "Projets": colorElementON = 0x45FF6A; colorElementOFF = 0x24963B; break;
-                case "Parcours": colorElementON = 0xECFF45; colorElementOFF = 0x929E26; break;
-                case "Apropos": colorElementON = 0xFF6445; colorElementOFF = 0x9E3624; break;
+                case "Base": colorElementON = this.baseColorElementON; colorElementOFF = this.baseColorElementOFF; break;
+                case "Competences": colorElementON = 0x45CDFF; colorElementOFF = 0x45CDFF; break; // 0x1C7FA3
+                case "Projets": colorElementON = 0x45FF6A; colorElementOFF = 0x45FF6A; break; // 0x24963B
+                case "Parcours": colorElementON = 0xECFF45; colorElementOFF = 0xECFF45; break; // 0x929E26
+                case "Apropos": colorElementON = 0xFF6445; colorElementOFF = 0xFF6445; break; //0x9E3624
                 default: console.warn(`unknown family: ${element.family}`);
             }
 
             let mesh;
             switch (element.type) {
                 case "root": 
-                    mesh = this.shapeFactory.create('root', {id: element.id, position: positionElement, radius: 1, height: 1, radialSegments: 6, color: colorElementON, intensity: this.intensityOFF}); 
+                    mesh = this.shapeFactory.create('root', {id: element.id, position: positionElement, radius: 1, height: 1, radialSegments: 6, color: colorElementOFF, intensity: this.intensityOFF}); 
                     break; 
                 case "branch": 
                     mesh = this.shapeFactory.create('branch', {id: element.id, position: positionElement, radius: 1, height: 1, radialSegments: 6, color: colorElementOFF, intensity: this.intensityOFF}); 
@@ -76,16 +76,14 @@ export class TreeManager {
         
         visited.add(nodeSelected);
         console.log(nodeSelected)
-        if (nodeSelected.type === "root" || !nodeSelected.parents || nodeSelected.parents.length === 0) {
+        if (nodeSelected.type === "root" || !nodeSelected.parent) {
             return [nodeSelected];
         }
         const parentPaths = [];
  
-        for (const parent of nodeSelected.parents) {
-            const pathFromParent = this.pathFinder(parent, visited);
-            parentPaths.push(...pathFromParent);
-        }
-
+        const pathFromParent = this.pathFinder(nodeSelected.parent, visited);
+        parentPaths.push(...pathFromParent);
+        
         return [nodeSelected, ...parentPaths];
     }
 
@@ -115,7 +113,6 @@ export class TreeManager {
         const stepDelay = 0.02;
         let currentDelay = 0;
 
-        // Créer une copie ([...]) pour ne pas muter/inverser l'original à chaque appel
         const elementLight = [...this.currentHighlightedPath].reverse();
 
         elementLight.forEach((element) => {
