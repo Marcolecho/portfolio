@@ -3,7 +3,6 @@ export const gitTreeData = [
     {id: 2, label: "RacineBase", family:"Base", type: "root", position: { x: -18, y: 2, z: 0 }, children: [3, 4, 5, 6]},
 
     {id: 3, label: "RacineCompetences", family:"Competences", type: "branch", position: { x: -5, y: 2, z:-30 }, children: [54,60]},
-
     {id: 54, label: "HardSkills", family:"Competences", type: "branch", position: { x: -6, y: 2, z:-43 }, children: [55,56]},
     {id: 55, label: "Conception", family:"Competences", type: "leaf", position: { x: -13, y: 2, z:-45 }, children: []},
     {id: 56, label: "Stack", family:"Competences", type: "branch", position: { x: -2, y: 2, z:-54 }, children: [57,58,59]},
@@ -34,7 +33,6 @@ export const gitTreeData = [
     {id: 38, label: "Easy Safe", family:"Projets", type: "leaf", position: { x: 32, y: 2, z: -28 }, children: []},
     {id: 39, label: "Breezy", family:"Projets", type: "leaf", position: { x: 37, y: 2, z: -26 }, children: []},
     {id: 40, label: "Recherche opérationnel", family:"Projets", type: "leaf", position: { x: 39, y: 2, z: -20 }, children: []},
-    
     {id: 41, label: "2026", family:"Projets", type: "branch", position: { x: 50, y: 2, z: -10 }, children: [42,47,49,52]},
     {id: 42, label: "Ecole d'ingénieur", family:"Projets", type: "branch", position: { x: 54, y: 2, z: -20 }, children: [43,44,45,46]},
     {id: 43, label: "Mémoire de recherche", family:"Projets", type: "leaf", position: { x: 46, y: 2, z: -21 }, children: []},

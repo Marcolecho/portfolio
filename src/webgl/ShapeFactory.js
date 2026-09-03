@@ -15,24 +15,26 @@ export class ShapeFactory {
         });
     }
 
-    createCylinder({position, radius, height, radialSegments, color, intensity}) {
+    createCylinder({id, position, radius, height, radialSegments, color, intensity}) {
         const geometry = new THREE.CylinderGeometry(radius, radius, height, radialSegments);
         
         const material = this.createNeonMaterial(color, intensity);
         
         const cylinder = new THREE.Mesh(geometry, material);
         cylinder.position.copy(position);
+        cylinder.userData.id = id
         this.scene.add(cylinder);
 
         return cylinder;
     }
 
-    createSphere({position, radius, segments, color, intensity}) {
+    createSphere({id, position, radius, segments, color, intensity}) {
         const geometry = new THREE.SphereGeometry(radius, segments, segments);
         const material = this.createNeonMaterial(color, intensity);
         const sphere = new THREE.Mesh(geometry, material);
 
         sphere.position.copy(position);
+        sphere.userData.id = id
         this.scene.add(sphere);
 
         return sphere;

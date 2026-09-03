@@ -1,3 +1,6 @@
+import gsap from 'gsap';
+import * as THREE from 'three'
+
 export class Element{
     constructor(type, colorON, colorOFF, intensityON, intensityOFF, mesh) {
 
@@ -13,16 +16,29 @@ export class Element{
         this.mesh = mesh
     }
 
-    setGlow(glow) {
+    setGlow(glow, delay = 0) {
         if (!this.mesh || !this.mesh.material) return;
 
-        const activeColor = glow ? this.colorON : this.colorOFF;
-        const intensity = glow ? this.intensityON : this.intensityOFF;
+        const targetIntensity = glow ? this.intensityON : this.intensityOFF;
+        const targetColorHex = glow ? this.colorON : this.colorOFF;
 
-        this.mesh.material.color.setHex(activeColor);
-        if (this.mesh.material.emissive) {
-            this.mesh.material.emissive.setHex(activeColor);
-            this.mesh.material.emissiveIntensity = intensity;
-        }
+        // L'option delay permet de décaler l'exécution
+        gsap.to(this.mesh.material, {
+            emissiveIntensity: targetIntensity,
+            duration: 0.4,
+            delay: delay, // <-- Décalage en secondes
+            ease: 'power2.out',
+            overwrite: 'auto'
+        });
+
+        const targetColor = new THREE.Color(targetColorHex);
+        gsap.to(this.mesh.material.color, {
+            r: targetColor.r,
+            g: targetColor.g,
+            b: targetColor.b,
+            duration: 0.4,
+            delay: delay,
+            ease: 'power2.out'
+        });
     }
 }

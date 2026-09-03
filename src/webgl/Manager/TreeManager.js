@@ -14,6 +14,7 @@ export class TreeManager {
         this.intensityOFF = 0.3
         this.baseColorElementON = 0xFFFFFF
         this.baseColorElementOFF = 0xBDBDBD
+        this.currentHighlightedPath = []
     }
 
     createTree(){
@@ -34,13 +35,13 @@ export class TreeManager {
             let mesh;
             switch (element.type) {
                 case "root": 
-                    mesh = this.shapeFactory.create('root', {position: positionElement, radius: 1, height: 1, radialSegments: 6, color: colorElementON, intensity: this.intensityOFF}); 
-                    break;
+                    mesh = this.shapeFactory.create('root', {id: element.id, position: positionElement, radius: 1, height: 1, radialSegments: 6, color: colorElementON, intensity: this.intensityOFF}); 
+                    break; 
                 case "branch": 
-                    mesh = this.shapeFactory.create('branch', {position: positionElement, radius: 1, height: 1, radialSegments: 6, color: colorElementOFF, intensity: this.intensityOFF}); 
+                    mesh = this.shapeFactory.create('branch', {id: element.id, position: positionElement, radius: 1, height: 1, radialSegments: 6, color: colorElementOFF, intensity: this.intensityOFF}); 
                     break;
                 case "leaf": 
-                    mesh = this.shapeFactory.create('leaf', {position: positionElement, radius: 0.8, segments: 16, color: colorElementOFF, intensity: this.intensityOFF});
+                    mesh = this.shapeFactory.create('leaf', {id: element.id, position: positionElement, radius: 0.8, segments: 16, color: colorElementOFF, intensity: this.intensityOFF});
                     break;
                 default: 
                     console.warn(`unknown family: ${element.family}`);
@@ -86,16 +87,64 @@ export class TreeManager {
         return [nodeSelected, ...parentPaths];
     }
 
-    lightPath(listNodes){
-        for(let i=0; i < listNodes.length; i+=1)
-        {
-            //console.log(listNodes[i])
-            listNodes[i].setGlow(true)
-            const linkToLight = this.listLinkElement.find(link => link.NodeElement1 == listNodes[i] && link.NodeElement2 == listNodes[i+1] || link.NodeElement1 == listNodes[i+1] && link.NodeElement2 == listNodes[i])
-            if(linkToLight)
-                linkToLight.setGlow(true)
-            //console.log(linkToLight)
+    lightPath(listNodes) { 
+        for (let i = 0; i < listNodes.length; i += 1) {
+            const node = listNodes[i];
+            
+            this.currentHighlightedPath.push(node)
+            
+
+            if (i < listNodes.length - 1) {
+                const linkToLight = this.listLinkElement.find(link => 
+                    (link.NodeElement1 === listNodes[i] && link.NodeElement2 === listNodes[i + 1]) ||
+                    (link.NodeElement1 === listNodes[i + 1] && link.NodeElement2 === listNodes[i])
+                );
+
+                if (linkToLight) {
+                    this.currentHighlightedPath.push(linkToLight)
+                }
+            }
         }
+
+        this.glowElement()
+    }
+
+    glowElement(){
+        const stepDelay = 0.02
+        let currentDelay = 0;
+        const elementLight = this.currentHighlightedPath.reverse()
+            elementLight.forEach((element) => {
+                currentDelay += stepDelay;
+                element.setGlow(true, currentDelay)
+        })
+    }
+    
+
+
+    highlightPathToNode(nodeSelected) {
+        console.log(nodeSelected)
+        if (nodeSelected == undefined){
+            this.resetHighlight()
+            return;
+        } 
+
+        const nodeObjSelected =  this.listNodeElement.find(e => e.id == nodeSelected)
+        if(nodeObjSelected.type != "leaf") return;
+
+        if (this.currentHighlightedPath[0] === nodeSelected) return;
+
+        this.resetHighlight();
+
+        const listElementToGlow = this.pathFinder(nodeObjSelected)
+
+        this.lightPath(listElementToGlow)
+    }
+
+    resetHighlight() {
+        this.currentHighlightedPath.forEach(node => {
+            node.setGlow(false);
+        });
+        this.currentHighlightedPath = [];
     }
 }
 

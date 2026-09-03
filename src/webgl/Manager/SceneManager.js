@@ -5,9 +5,9 @@ import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
 
 export class SceneManager {
-  constructor(canvas) {
+  constructor(scene, canvas, onNodeHover) {
     this.canvas = canvas;
-    this.scene = new THREE.Scene();
+    this.scene = scene;
     this.scene.fog = new THREE.FogExp2(0x0a0a12, 0.02);
 
     this.camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -44,7 +44,27 @@ export class SceneManager {
     gridHelper.material.opacity = 0.2; // Opacité douce pour laisser ressortir les néons
     this.scene.add(gridHelper);
 
+    this.onNodeHover = onNodeHover; 
+    this.raycaster = new THREE.Raycaster();
+    this.mouse = new THREE.Vector2();
+
     window.addEventListener('resize', () => this.onWindowResize());
+    window.addEventListener('click', (e) => this.onPointerClick(e));
+  }
+
+  onPointerClick(event) {
+    this.mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+    this.mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    this.raycaster.setFromCamera(this.mouse, this.camera);
+    const intersects = this.raycaster.intersectObjects(this.scene.children, false);
+
+    if (intersects.length > 0) {
+      const nodeElement = intersects[0].object.userData.id;
+      this.onNodeHover(nodeElement);
+    } else {
+      this.onNodeHover(null); // Souris dans le vide -> désélection
+    }
   }
 
   getScene() {
