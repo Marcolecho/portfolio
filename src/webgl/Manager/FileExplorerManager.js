@@ -94,7 +94,7 @@ export class FileExplorerManager {
                 leafDiv.className = 'file-node';
                 leafDiv.innerHTML = `• ${node.name}`;
 
-                leafDiv.addEventListener('click', (e) => {
+                leafDiv.addEventListener('mouseover', (e) => {
                     e.stopPropagation();
                     this.treeManager.highlightPathToNode(node.id);
                 });
