@@ -2,7 +2,7 @@ export const gitTreeData = [
     {id: 1, label: "RacineBase", family:"Base", type: "root", position: { x: -50, y: 2, z: 0 }, children: [2]},
     {id: 2, label: "RacineBase", family:"Base", type: "root", position: { x: -18, y: 2, z: 0 }, children: [3, 4, 5, 6]},
 
-    {id: 3, label: "RacineCompetences", family:"Competences", type: "branch", position: { x: -5, y: 2, z:-30 }, children: [54,60]},
+    {id: 3, label: "Compétences", family:"Competences", type: "branch", position: { x: -5, y: 2, z:-30 }, children: [54,60]},
     {id: 54, label: "HardSkills", family:"Competences", type: "branch", position: { x: -6, y: 2, z:-43 }, children: [55,56]},
     {id: 55, label: "Conception", family:"Competences", type: "leaf", position: { x: -13, y: 2, z:-45 }, children: []},
     {id: 56, label: "Stack", family:"Competences", type: "branch", position: { x: -2, y: 2, z:-54 }, children: [57,58,59]},
@@ -14,7 +14,7 @@ export const gitTreeData = [
     {id: 62, label: "Gestion de projets", family:"Competences", type: "leaf", position: { x: 12, y: 2, z:-40 }, children: []},
     {id: 63, label: "Softskills", family:"Competences", type: "leaf", position: { x: 6, y: 2, z:-44 }, children: []},
 
-    {id: 4, label: "RacineProjets", family:"Projets", type: "branch", position: { x: -5, y: 2, z: -15 }, children: [23]},
+    {id: 4, label: "Projets", family:"Projets", type: "branch", position: { x: -5, y: 2, z: -15 }, children: [23]},
     {id: 23, label: "2023", family:"Projets", type: "branch", position: { x: 4, y: 2, z: -13 }, children: [24,26]},
     {id: 24, label: "IUT", family:"Projets", type: "branch", position: { x: 6, y: 2, z: -20 }, children: [25]},
     {id: 25, label: "Projet3", family:"Projets", type: "leaf", position: { x: 0, y: 2, z: -22 }, children: []},
@@ -35,7 +35,7 @@ export const gitTreeData = [
     {id: 40, label: "Recherche opérationnel", family:"Projets", type: "leaf", position: { x: 39, y: 2, z: -20 }, children: []},
     {id: 41, label: "2026", family:"Projets", type: "branch", position: { x: 50, y: 2, z: -10 }, children: [42,47,49,52]},
     {id: 42, label: "Ecole d'ingénieur", family:"Projets", type: "branch", position: { x: 54, y: 2, z: -20 }, children: [43,44,45,46]},
-    {id: 43, label: "Mémoire de recherche", family:"Projets", type: "leaf", position: { x: 46, y: 2, z: -21 }, children: []},
+    {id: 43, label: "ADS", family:"Projets", type: "leaf", position: { x: 46, y: 2, z: -21 }, children: []},
     {id: 44, label: "Big data", family:"Projets", type: "leaf", position: { x: 55, y: 2, z: -30 }, children: []},
     {id: 45, label: "IOT", family:"Projets", type: "leaf", position: { x: 64, y: 2, z: -28 }, children: []},
     {id: 46, label: "IA", family:"Projets", type: "leaf", position: { x: 63, y: 2, z: -18 }, children: []},
@@ -47,7 +47,7 @@ export const gitTreeData = [
     {id: 52, label: "Stage Internationnal", family:"Projets", type: "branch", position: { x: 58, y: 2, z: -7 }, children: [53]},
     {id: 53, label: "COR", family:"Projets", type: "leaf", position: { x: 64, y: 2, z: -10 }, children: []},
 
-    {id: 5, label: "RacineParcours", family:"Parcours", type: "branch", position: { x: -5, y: 2, z: 0 }, children: [15]},
+    {id: 5, label: "Parcours", family:"Parcours", type: "branch", position: { x: -5, y: 2, z: 0 }, children: [15]},
     {id: 15, label: "2022-2024", family:"Parcours", type: "branch", position: { x: 7, y: 2, z: 3 }, children: [16,17,18]},
     {id: 16, label: "Licence", family:"Parcours", type: "leaf", position: { x: 8, y: 2, z: 12 }, children: []},
     {id: 17, label: "Alternance", family:"Parcours", type: "leaf", position: { x: 5, y: 2, z: -6 }, children: []},
@@ -57,7 +57,7 @@ export const gitTreeData = [
     {id: 21, label: "Ecole d'ingénieur", family:"Parcours", type: "leaf", position: { x: 30, y: 2, z: 13 }, children: []},
     {id: 22, label: "Alternance", family:"Parcours", type: "leaf", position: { x: 24, y: 2, z: 18 }, children: []},
 
-    {id: 6, label: "RacineApropos", family:"Apropos", type: "branch", position: { x: -5, y: 2, z: 15 }, children: [7,8]},
+    {id: 6, label: "A propos", family:"Apropos", type: "branch", position: { x: -5, y: 2, z: 15 }, children: [7,8]},
     {id: 7, label: "Presentation", family:"Apropos", type: "leaf", position: { x: 0, y: 2, z: 10 }, children: []},
     {id: 8, label: "Passion", family:"Apropos", type: "branch", position: { x: 5, y: 2, z: 24 }, children: [9,10,11,64]},
     {id: 9, label: "Programmation", family:"Apropos", type: "leaf", position: { x: 0, y: 2, z: 32 }, children: []},

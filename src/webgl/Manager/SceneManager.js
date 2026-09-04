@@ -38,7 +38,7 @@ export class SceneManager {
     const ambientLight = new THREE.AmbientLight(0xffffff, 1);
     this.scene.add(ambientLight);
 
-    const gridHelper = new THREE.GridHelper(1000, 1000, 0x444444, 0x222222);
+    const gridHelper = new THREE.GridHelper(10000, 10000, 0x444444, 0x222222);
     gridHelper.position.y = 0;
 
     gridHelper.material = new THREE.LineBasicMaterial({
