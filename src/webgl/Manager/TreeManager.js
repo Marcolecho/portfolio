@@ -4,6 +4,7 @@ import { NodeElement } from '../../class/treeClass/NodeElement.js';
 import { ShapeFactory } from '../ShapeFactory.js';
 import { LinkElement } from '../../class/treeClass/LinkElement.js';
 import gsap from 'gsap';
+import { CSS2DObject } from 'three/examples/jsm/renderers/CSS2DRenderer.js';
 
 export class TreeManager {
     constructor(scene) {
@@ -17,6 +18,7 @@ export class TreeManager {
         this.baseColorElementOFF = 0x9E9E9E
         this.currentHighlightedPath = []
         this.currentNodeId = null
+        this.currentPopup = null
     }
 
     createTree(gitTreeData){
@@ -122,11 +124,13 @@ export class TreeManager {
     }
 
     highlightPathToNode(nodeSelected) { 
+        
         if (!nodeSelected) {
             if (this.currentNodeId !== null) {
                 this.resetHighlight();
                 this.currentNodeId = null
             }
+            this.removePopup()
             return;
         } 
 
@@ -137,6 +141,8 @@ export class TreeManager {
             }
             return;
         }
+
+        this.showPopupOnNode(nodeObjSelected)
 
         if (this.currentNodeId === nodeObjSelected.id) {
             return; 
@@ -167,6 +173,57 @@ export class TreeManager {
         });
 
         this.currentHighlightedPath = [];
+    }
+
+
+    showPopupOnNode(nodeElement) {
+        this.removePopup();
+
+        const popupDiv = document.createElement('div');
+        popupDiv.className = 'popup arrow-bottom';
+        popupDiv.style.pointerEvents = 'auto';
+        popupDiv.innerHTML = `
+        <div class="popup-wrapper">
+            <p>Information sur : <strong>${nodeElement.name}</strong></p>
+        </div>
+        `;
+
+        const popupObject = new CSS2DObject(popupDiv);
+
+        this.scene.add(popupObject); 
+
+        this.activeNodeForPopup = nodeElement;
+        this.currentPopup = popupObject;
+    }
+
+    updatePopupPosition(camera) {
+        if (!this.currentPopup || !this.activeNodeForPopup) return;
+
+        const worldPosition = new THREE.Vector3();
+        this.activeNodeForPopup.mesh.getWorldPosition(worldPosition);
+
+        const ndcPosition = worldPosition.clone().project(camera);
+
+        const correctionFactorX = 2; 
+        const offsetX = -ndcPosition.x * correctionFactorX;
+
+        const baseOffsetY = 1.5;
+        const factorY = 1.2;    
+        
+        const extraOffsetY = Math.max(0, ndcPosition.y) * factorY;
+
+        worldPosition.x += offsetX;
+        worldPosition.y += baseOffsetY + extraOffsetY + 2;
+
+        this.currentPopup.position.copy(worldPosition);
+    }
+
+    removePopup() {
+        if (this.currentPopup) {
+        this.scene.remove(this.currentPopup);
+        this.currentPopup = null;
+        this.activeNodeForPopup = null;
+        }
     }
 }
 

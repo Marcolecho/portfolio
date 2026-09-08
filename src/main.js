@@ -4,7 +4,7 @@ import { gitTreeData } from './data/gitTreeData.js';
 import * as THREE from 'three'
 import { FileExplorerManager } from './webgl/Manager/FileExplorerManager.js';
 
-const canvas = document.getElementById('webgl-canvas');
+const canvas = document.getElementById('canvas');
 const scene = new THREE.Scene();
 
 const treeManager = new TreeManager(scene)
@@ -16,4 +16,6 @@ const elements = treeManager.createTree(gitTreeData)
 
 const fileExplorerManager = new FileExplorerManager(elements[0], treeManager)
 fileExplorerManager.createStructureFolder()
-sceneManager.render(() => {});
+sceneManager.render(() => {
+  treeManager.updatePopupPosition(sceneManager.camera); 
+});

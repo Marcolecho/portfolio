@@ -7,27 +7,14 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <canvas id="webgl-canvas"></canvas>
+  <div id="canvas-container">
+    <canvas id="canvas"></canvas>
+  </div>
 
   <aside id="sidebar">
-    <h2 id="title-sidebar"> Explorateur </h2>
-    <section id="file-explorer">
-    </section>
+    <h2 id="title-sidebar">Explorateur</h2>
+    <section id="file-explorer"></section>
   </aside>
-
-  <div class="popup arrow-bottom">
-    <div class="popup-wrapper">
-      <p>Popup/modal example</p>
-    <div>
-  </div>
-
-  <div id="details-overlay" class="hidden">
-    <button id="close-btn">&times;</button>
-    <span id="detail-category" class="badge"></span>
-    <h1 id="detail-title"></h1>
-    <p id="detail-date" class="date"></p>
-    <p id="detail-description"></p>
-  </div>
 
   <script type="module" src="./src/main.js"></script>
 </body>
