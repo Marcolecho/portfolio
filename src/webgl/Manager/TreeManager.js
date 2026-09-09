@@ -19,6 +19,7 @@ export class TreeManager {
         this.currentHighlightedPath = []
         this.currentNodeId = null
         this.currentPopup = null
+        this.activeNodeForPopup = null
     }
 
     createTree(gitTreeData){
@@ -77,7 +78,6 @@ export class TreeManager {
         if (!nodeSelected || visited.has(nodeSelected)) return [];
         
         visited.add(nodeSelected);
-        console.log(nodeSelected)
         if (nodeSelected.type === "root" || !nodeSelected.parent) {
             return [nodeSelected];
         }
@@ -124,8 +124,8 @@ export class TreeManager {
     }
 
     highlightPathToNode(nodeSelected) { 
-        
-        if (!nodeSelected) {
+
+        if (!nodeSelected && this.activeNodeForPopup == null) {
             if (this.currentNodeId !== null) {
                 this.resetHighlight();
                 this.currentNodeId = null
@@ -134,6 +134,9 @@ export class TreeManager {
             return;
         } 
 
+        if(this.activeNodeForPopup != null)
+            if(this.activeNodeForPopup.id == this.currentNodeId) return
+
         const nodeObjSelected = this.listNodeElement.find(e => e.id == nodeSelected);
         if (!nodeObjSelected || nodeObjSelected.type !== "leaf") {
             if (this.currentNodeId !== null) {
@@ -141,8 +144,6 @@ export class TreeManager {
             }
             return;
         }
-
-        this.showPopupOnNode(nodeObjSelected)
 
         if (this.currentNodeId === nodeObjSelected.id) {
             return; 
@@ -156,8 +157,9 @@ export class TreeManager {
         this.lightPath(listElementToGlow);
     }
 
-    resetHighlight() {
 
+
+    resetHighlight() {
         this.currentHighlightedPath.forEach(node => {
             if (node.mesh && node.mesh.material) {
                 gsap.killTweensOf(node.mesh.material);
@@ -176,53 +178,86 @@ export class TreeManager {
     }
 
 
-    showPopupOnNode(nodeElement) {
+    showPopupOnNode(nodeId) {
+        const nodeObjSelected = this.listNodeElement.find(e => e.id == nodeId);
+        if (!nodeObjSelected || nodeObjSelected.type !== "leaf") {
+
+            this.removePopup();
+            this.activeNodeForPopup = null;
+            this.currentPopup = null;
+            return;
+        }
+
         this.removePopup();
 
         const popupDiv = document.createElement('div');
         popupDiv.className = 'popup arrow-bottom';
         popupDiv.style.pointerEvents = 'auto';
         popupDiv.innerHTML = `
-        <div class="popup-wrapper">
-            <p>Information sur : <strong>${nodeElement.name}</strong></p>
-        </div>
+            <div class="popup-wrapper">
+                <div class="popup-header">${nodeObjSelected.name}</div>
+            </div>
         `;
 
         const popupObject = new CSS2DObject(popupDiv);
 
-        this.scene.add(popupObject); 
+        const boundingBox = new THREE.Box3().setFromObject(nodeObjSelected.mesh);
+        const size = new THREE.Vector3();
+        boundingBox.getSize(size);
 
-        this.activeNodeForPopup = nodeElement;
+        const offsetY = size.y / 2 + 2;
+        popupObject.position.set(0, offsetY, 0); 
+        nodeObjSelected.mesh.add(popupObject);
+        nodeObjSelected.mesh.updateMatrixWorld(true);
+
+        this.activeNodeForPopup = nodeObjSelected;
         this.currentPopup = popupObject;
-    }
 
-    updatePopupPosition(camera) {
-        if (!this.currentPopup || !this.activeNodeForPopup) return;
-
-        const worldPosition = new THREE.Vector3();
-        this.activeNodeForPopup.mesh.getWorldPosition(worldPosition);
-
-        const ndcPosition = worldPosition.clone().project(camera);
-
-        const correctionFactorX = 2; 
-        const offsetX = -ndcPosition.x * correctionFactorX;
-
-        const baseOffsetY = 1.5;
-        const factorY = 1.2;    
-        
-        const extraOffsetY = Math.max(0, ndcPosition.y) * factorY;
-
-        worldPosition.x += offsetX;
-        worldPosition.y += baseOffsetY + extraOffsetY + 2;
-
-        this.currentPopup.position.copy(worldPosition);
+        if(this.activeNodeForPopup.id != this.currentNodeId){
+            this.highlightPathToNode(this.activeNodeForPopup.id)
+        }
     }
 
     removePopup() {
-        if (this.currentPopup) {
-        this.scene.remove(this.currentPopup);
+        if (!this.currentPopup) return;
+
+        const popupToRemove = this.currentPopup;
+
         this.currentPopup = null;
         this.activeNodeForPopup = null;
+
+        const popupDiv = popupToRemove.element;
+
+        if (popupDiv) {
+            const wrapper = popupDiv.querySelector('.popup-wrapper');
+
+            if (wrapper) {
+                popupDiv.classList.remove('arrow-bottom');
+                wrapper.classList.add('is-closing');
+
+                const onAnimationEnd = () => {
+                    if (popupToRemove.parent) {
+                        popupToRemove.parent.remove(popupToRemove);
+                    } else {
+                        this.scene.remove(popupToRemove);
+                    }
+                    popupDiv.remove();
+                };
+
+                wrapper.addEventListener('animationend', onAnimationEnd, { once: true });
+
+                setTimeout(() => {
+                    if (popupDiv.parentNode) {
+                        onAnimationEnd();
+                    }
+                }, 300);
+
+            } else {
+                if (popupToRemove.parent) popupToRemove.parent.remove(popupToRemove);
+                popupDiv.remove();
+            }
+        } else {
+            if (popupToRemove.parent) popupToRemove.parent.remove(popupToRemove);
         }
     }
 }

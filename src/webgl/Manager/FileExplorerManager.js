@@ -99,6 +99,11 @@ export class FileExplorerManager {
                     this.treeManager.highlightPathToNode(node.id);
                 });
 
+                leafDiv.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    this.treeManager.showPopupOnNode(node.id);
+                });
+
                 const parentContainer = folderContainers.get(node.parent.id);
                 if (parentContainer) {
                     parentContainer.appendChild(leafDiv);

@@ -6,12 +6,12 @@ import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js'
 import { CSS2DRenderer, CSS2DObject } from 'three/examples/jsm/renderers/CSS2DRenderer.js';
 
 export class SceneManager {
-    constructor(scene, canvas, onNodeHover) {
+    constructor(scene, canvas, onNodeHover, clickNode) {
       this.canvas = canvas;
       this.scene = scene;
       // this.scene.fog = new THREE.FogExp2(0x0a0a12, 0.025);
 
-      this.camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 1000);
+      this.camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 0.1, 1000);
 
       this.camera.position.set(-45, 50, 50);
 
@@ -64,15 +64,17 @@ export class SceneManager {
       });
       this.scene.add(gridHelper);
 
+      this.clickNode = clickNode
       this.onNodeHover = onNodeHover; 
       this.raycaster = new THREE.Raycaster();
       this.mouse = new THREE.Vector2();
 
       window.addEventListener('resize', () => this.onWindowResize());
-      canvas.addEventListener('pointermove', (e) => this.onPointerMove(e));
+      canvas.addEventListener('pointermove', (e) => this.onPointerMove(e, this.onNodeHover));
+      canvas.addEventListener('click', (e) => this.onPointerMove(e, this.clickNode));
   }
 
-  onPointerMove(event) {
+  onPointerMove(event, eventNode) {
     this.mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
     this.mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
 
@@ -81,9 +83,9 @@ export class SceneManager {
 
     if (intersects.length > 0) {
       const nodeElement = intersects[0].object.userData.id;
-      this.onNodeHover(nodeElement);
+      eventNode(nodeElement);
     } else {
-      this.onNodeHover(null); 
+      eventNode(null); 
     }
   }
 
