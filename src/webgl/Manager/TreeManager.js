@@ -3,8 +3,8 @@ import * as THREE from 'three'
 import { NodeElement } from '../../class/treeClass/NodeElement.js';
 import { ShapeFactory } from '../ShapeFactory.js';
 import { LinkElement } from '../../class/treeClass/LinkElement.js';
+import { TextInSceneManager } from './TextInSceneManager.js';
 import gsap from 'gsap';
-import { CSS2DObject } from 'three/examples/jsm/renderers/CSS2DRenderer.js';
 
 export class TreeManager {
     constructor(scene) {
@@ -17,10 +17,8 @@ export class TreeManager {
         this.baseColorElementON = 0x9E9E9E
         this.baseColorElementOFF = 0x9E9E9E
         this.currentHighlightedPath = []
+        this.TextInSceneManager = new TextInSceneManager(scene)
         this.currentNodeId = null
-        this.currentPopup = null
-        this.activeNodeForPopup = null
-        this.floatingtextObjects = [];
     }
 
     createTree(gitTreeData){
@@ -56,7 +54,7 @@ export class TreeManager {
             const nodeElement = new NodeElement(element.id, element.label, element.description, element.type, element.family, positionElement, colorElementON, colorElementOFF, this.intensityON, this.intensityOFF, mesh)
             this.listNodeElement.push(nodeElement);
             if(element.type == "branch"){
-                this.floatingtextObjects.push(this.addFloatingTextOnElement(nodeElement))
+                this.TextInSceneManager.floatingtextObjects.push(this.TextInSceneManager.addFloatingTextOnElement(nodeElement))
             }
         });
 
@@ -129,19 +127,19 @@ export class TreeManager {
 
     highlightPathToNode(nodeSelected) { 
 
-        if (!nodeSelected && this.activeNodeForPopup == null) {
+        if (!nodeSelected && this.TextInSceneManager.activeNodeForPopup == null) {
             if (this.currentNodeId !== null) {
                 this.resetHighlight();
                 this.currentNodeId = null
             }
-            this.removePopup()
+            this.TextInSceneManager.removePopup()
             document.body.style.cursor = "default"
             return;
         } 
 
-        if(this.activeNodeForPopup != null){
+        if(this.TextInSceneManager.activeNodeForPopup != null){
             document.body.style.cursor = "default"
-            if(this.activeNodeForPopup.id == this.currentNodeId) return
+            if(this.TextInSceneManager.activeNodeForPopup.id == this.currentNodeId) return
         }
 
         document.body.style.cursor = "pointer"
@@ -183,130 +181,6 @@ export class TreeManager {
         });
 
         this.currentHighlightedPath = [];
-    }
-
-    addFloatingTextOnElement(node) {
-        const popupDiv = document.createElement('div');
-        popupDiv.className = 'floatingText arrow-bottom-floatingText';
-        popupDiv.innerHTML = `
-            <div class="floatingText-wrapper">
-                ${node.name}
-            </div>
-        `;
-
-        const popupObject = new CSS2DObject(popupDiv);
-
-        const boundingBox = new THREE.Box3().setFromObject(node.mesh);
-        const size = new THREE.Vector3();
-        boundingBox.getSize(size);
-
-        const offsetY = size.y / 2 + 2;
-        popupObject.position.set(0, offsetY, 0); 
-        node.mesh.add(popupObject);
-        node.mesh.updateMatrixWorld(true);
-
-        return { mesh: node.mesh, popupDiv: popupDiv };
-    }
-
-    updateFloatingTextsProximity(camera) {
-        const tempVector = new THREE.Vector3();
-
-        this.floatingtextObjects.forEach(({ mesh, popupDiv }) => {
-            mesh.getWorldPosition(tempVector);
-
-            const distance = camera.position.distanceTo(tempVector);
-            const scale = THREE.MathUtils.clamp(40 / distance, 0.6, 1.4);
-            
-            const opacity = THREE.MathUtils.clamp(1 - (distance - 50) / 80, 0, 1);
-
-            popupDiv.style.transform = `translate(-50%, -50%) scale(${scale})`;
-            popupDiv.style.opacity = opacity;
-        });
-    }
-
-    showPopupOnNode(nodeId) {
-        const nodeObjSelected = this.listNodeElement.find(e => e.id == nodeId);
-        if (!nodeObjSelected || nodeObjSelected.type !== "leaf") {
-
-            this.removePopup();
-            this.activeNodeForPopup = null;
-            this.currentPopup = null;
-            return;
-        }
-
-        this.removePopup();
-
-        const popupDiv = document.createElement('div');
-        popupDiv.className = 'popup';
-        popupDiv.style.pointerEvents = 'auto';
-        popupDiv.innerHTML = `
-            <div class="popup-wrapper">
-                <div class="popup-header">${nodeObjSelected.name}</div>
-                <div class="popup-content">${nodeObjSelected.description}</div>
-                <button class="popup-button"> Entrer </button>
-            </div>
-        `;
-
-        const popupObject = new CSS2DObject(popupDiv);
-
-        const boundingBox = new THREE.Box3().setFromObject(nodeObjSelected.mesh);
-        const size = new THREE.Vector3();
-        boundingBox.getSize(size);
-
-        const offsetY = size.y / 2 + 4;
-        popupObject.position.set(0, offsetY, 0); 
-        nodeObjSelected.mesh.add(popupObject);
-        nodeObjSelected.mesh.updateMatrixWorld(true);
-
-        this.activeNodeForPopup = nodeObjSelected;
-        this.currentPopup = popupObject;
-
-        if(this.activeNodeForPopup.id != this.currentNodeId){
-            this.highlightPathToNode(this.activeNodeForPopup.id)
-        }
-    }
-
-    removePopup() {
-        if (!this.currentPopup) return;
-
-        const popupToRemove = this.currentPopup;
-
-        this.currentPopup = null;
-        this.activeNodeForPopup = null;
-
-        const popupDiv = popupToRemove.element;
-
-        if (popupDiv) {
-            const wrapper = popupDiv.querySelector('.popup-wrapper');
-
-            if (wrapper) {
-                popupDiv.classList.remove('arrow-bottom');
-                wrapper.classList.add('is-closing');
-
-                const onAnimationEnd = () => {
-                    if (popupToRemove.parent) {
-                        popupToRemove.parent.remove(popupToRemove);
-                    } else {
-                        this.scene.remove(popupToRemove);
-                    }
-                    popupDiv.remove();
-                };
-
-                wrapper.addEventListener('animationend', onAnimationEnd, { once: true });
-
-                setTimeout(() => {
-                    if (popupDiv.parentNode) {
-                        onAnimationEnd();
-                    }
-                }, 300);
-
-            } else {
-                if (popupToRemove.parent) popupToRemove.parent.remove(popupToRemove);
-                popupDiv.remove();
-            }
-        } else {
-            if (popupToRemove.parent) popupToRemove.parent.remove(popupToRemove);
-        }
     }
 }
 

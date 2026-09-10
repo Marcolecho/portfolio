@@ -101,7 +101,7 @@ export class FileExplorerManager {
 
                 leafDiv.addEventListener('click', (e) => {
                     e.stopPropagation();
-                    this.treeManager.showPopupOnNode(node.id);
+                    this.treeManager.TextInSceneManager.showPopupOnNode(node.id, this.treeManager.listNodeElement);
                 });
 
                 const parentContainer = folderContainers.get(node.parent.id);
