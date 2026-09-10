@@ -1,6 +1,6 @@
 export const gitTreeData = [
     {id: 1, label: "RacineBase", description:"Point d'entrée du portfolio", family:"Base", type: "root", position: { x: -50, y: 2, z: 0 }, children: [2]},
-    {id: 2, label: "Cliquez sur une feuille de l'arbre", description:"Nœud central de navigation", family:"Base", type: "root", position: { x: -18, y: 2, z: 0 }, children: [3, 4, 5, 6]},
+    {id: 2, label: "Cliquez sur une feuille de l'arbre", description:"Nœud central de navigation", family:"Base", type: "branch", position: { x: -18, y: 2, z: 0 }, children: [3, 4, 5, 6]},
 
     // --- COMPÉTENCES ---
     {id: 3, label: "Compétences", description:"Aperçu des compétences techniques et humaines", family:"Competences", type: "branch", position: { x: -5, y: 2, z:-30 }, children: [54,60]},

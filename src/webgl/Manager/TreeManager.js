@@ -20,6 +20,7 @@ export class TreeManager {
         this.currentNodeId = null
         this.currentPopup = null
         this.activeNodeForPopup = null
+        this.floatingtextObjects = [];
     }
 
     createTree(gitTreeData){
@@ -52,8 +53,11 @@ export class TreeManager {
                     console.warn(`unknown family: ${element.family}`);
             }
 
-            this.listNodeElement.push(new NodeElement(element.id, element.label ,element.type, positionElement, colorElementON, colorElementOFF, this.intensityON, this.intensityOFF, mesh));
-
+            const nodeElement = new NodeElement(element.id, element.label, element.description, element.type, element.family, positionElement, colorElementON, colorElementOFF, this.intensityON, this.intensityOFF, mesh)
+            this.listNodeElement.push(nodeElement);
+            if(element.type == "branch"){
+                this.floatingtextObjects.push(this.addFloatingTextOnElement(nodeElement))
+            }
         });
 
         gitTreeData.forEach(parent => {
@@ -131,12 +135,16 @@ export class TreeManager {
                 this.currentNodeId = null
             }
             this.removePopup()
+            document.body.style.cursor = "default"
             return;
         } 
 
-        if(this.activeNodeForPopup != null)
+        if(this.activeNodeForPopup != null){
+            document.body.style.cursor = "default"
             if(this.activeNodeForPopup.id == this.currentNodeId) return
+        }
 
+        document.body.style.cursor = "pointer"
         const nodeObjSelected = this.listNodeElement.find(e => e.id == nodeSelected);
         if (!nodeObjSelected || nodeObjSelected.type !== "leaf") {
             if (this.currentNodeId !== null) {
@@ -177,6 +185,44 @@ export class TreeManager {
         this.currentHighlightedPath = [];
     }
 
+    addFloatingTextOnElement(node) {
+        const popupDiv = document.createElement('div');
+        popupDiv.className = 'floatingText arrow-bottom-floatingText';
+        popupDiv.innerHTML = `
+            <div class="floatingText-wrapper">
+                ${node.name}
+            </div>
+        `;
+
+        const popupObject = new CSS2DObject(popupDiv);
+
+        const boundingBox = new THREE.Box3().setFromObject(node.mesh);
+        const size = new THREE.Vector3();
+        boundingBox.getSize(size);
+
+        const offsetY = size.y / 2 + 2;
+        popupObject.position.set(0, offsetY, 0); 
+        node.mesh.add(popupObject);
+        node.mesh.updateMatrixWorld(true);
+
+        return { mesh: node.mesh, popupDiv: popupDiv };
+    }
+
+    updateFloatingTextsProximity(camera) {
+        const tempVector = new THREE.Vector3();
+
+        this.floatingtextObjects.forEach(({ mesh, popupDiv }) => {
+            mesh.getWorldPosition(tempVector);
+
+            const distance = camera.position.distanceTo(tempVector);
+            const scale = THREE.MathUtils.clamp(40 / distance, 0.6, 1.4);
+            
+            const opacity = THREE.MathUtils.clamp(1 - (distance - 50) / 80, 0, 1);
+
+            popupDiv.style.transform = `translate(-50%, -50%) scale(${scale})`;
+            popupDiv.style.opacity = opacity;
+        });
+    }
 
     showPopupOnNode(nodeId) {
         const nodeObjSelected = this.listNodeElement.find(e => e.id == nodeId);
@@ -191,11 +237,13 @@ export class TreeManager {
         this.removePopup();
 
         const popupDiv = document.createElement('div');
-        popupDiv.className = 'popup arrow-bottom';
+        popupDiv.className = 'popup';
         popupDiv.style.pointerEvents = 'auto';
         popupDiv.innerHTML = `
             <div class="popup-wrapper">
                 <div class="popup-header">${nodeObjSelected.name}</div>
+                <div class="popup-content">${nodeObjSelected.description}</div>
+                <button class="popup-button"> Entrer </button>
             </div>
         `;
 
@@ -205,7 +253,7 @@ export class TreeManager {
         const size = new THREE.Vector3();
         boundingBox.getSize(size);
 
-        const offsetY = size.y / 2 + 2;
+        const offsetY = size.y / 2 + 4;
         popupObject.position.set(0, offsetY, 0); 
         nodeObjSelected.mesh.add(popupObject);
         nodeObjSelected.mesh.updateMatrixWorld(true);

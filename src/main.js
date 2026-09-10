@@ -17,4 +17,6 @@ const elements = treeManager.createTree(gitTreeData)
 
 const fileExplorerManager = new FileExplorerManager(elements[0], treeManager)
 fileExplorerManager.createStructureFolder()
-sceneManager.render(() => {});
+sceneManager.render(() => {
+  treeManager.updateFloatingTextsProximity(sceneManager.camera)
+});

@@ -11,7 +11,7 @@ export class FileExplorerManager {
         const folderContainers = new Map();
 
         this.listNodeElement.forEach(node => {
-            if (node.type === "root") return;
+            if (node.type === "root" || node.family == "Base") return;
 
             // si il faut faire un dossier
             if (node.type === "branch") {
@@ -80,7 +80,7 @@ export class FileExplorerManager {
 
                 folderContainers.set(node.id, childrenContainer);
 
-                if (!node.parent || node.parent.type === "root") {
+                if (!node.parent || node.parent.type === "root" || node.parent.family == "Base") {
                     sectionExplorer.appendChild(details);
                 } 
                 else {
