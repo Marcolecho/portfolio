@@ -20,15 +20,9 @@ export class TextInSceneManager {
         `;
 
         const popupObject = new CSS2DObject(popupDiv);
-
-        const boundingBox = new THREE.Box3().setFromObject(node.mesh);
-        const size = new THREE.Vector3();
-        boundingBox.getSize(size);
-
-        const offsetY = size.y / 2 + 2;
+        const offsetY = node.height ? (node.height / 2 + 2) : 3;
         popupObject.position.set(0, offsetY, 0); 
         node.mesh.add(popupObject);
-        node.mesh.updateMatrixWorld(true);
 
         return { mesh: node.mesh, popupDiv: popupDiv };
     }

@@ -10,7 +10,7 @@ const scene = new THREE.Scene();
 const treeManager = new TreeManager(scene)
 const sceneManager = new SceneManager(scene, canvas, 
   (hoveredNode) => {treeManager.highlightPathToNode(hoveredNode);},
-  (clickNode) => {treeManager.TextInSceneManager.showPopupOnNode(clickNode, treeManager.listNodeElement);},
+  (clickNode) => {treeManager.TextInSceneManager.showPopupOnNode(clickNode, treeManager.listNodeElement); treeManager.highlightPathToNode(clickNode);},
 );
 
 const elements = treeManager.createTree(gitTreeData)

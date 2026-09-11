@@ -39,13 +39,13 @@ export class TreeManager {
             let mesh;
             switch (element.type) {
                 case "root": 
-                    mesh = this.shapeFactory.create('root', {id: element.id, position: positionElement, radius: 1, height: 1, radialSegments: 6, color: colorElementOFF, intensity: this.intensityOFF}); 
+                    mesh = this.shapeFactory.create('root', {id: element.id, type: element.type, position: positionElement, radius: 1, height: 1, radialSegments: 6, color: colorElementOFF, intensity: this.intensityOFF}); 
                     break; 
                 case "branch": 
-                    mesh = this.shapeFactory.create('branch', {id: element.id, position: positionElement, radius: 1, height: 1, radialSegments: 6, color: colorElementOFF, intensity: this.intensityOFF}); 
+                    mesh = this.shapeFactory.create('branch', {id: element.id, type: element.type, position: positionElement, radius: 1, height: 1, radialSegments: 6, color: colorElementOFF, intensity: this.intensityOFF}); 
                     break;
                 case "leaf": 
-                    mesh = this.shapeFactory.create('leaf', {id: element.id, position: positionElement, radius: 0.8, segments: 16, color: colorElementOFF, intensity: this.intensityOFF});
+                    mesh = this.shapeFactory.create('leaf', {id: element.id, type: element.type, position: positionElement, radius: 0.8, segments: 16, color: colorElementOFF, intensity: this.intensityOFF});
                     break;
                 default: 
                     console.warn(`unknown family: ${element.family}`);
@@ -125,42 +125,45 @@ export class TreeManager {
         });
     }
 
-    highlightPathToNode(nodeSelected) { 
-
-        if (!nodeSelected && this.TextInSceneManager.activeNodeForPopup == null) {
-            if (this.currentNodeId !== null) {
-                this.resetHighlight();
-                this.currentNodeId = null
+    highlightPathToNode(nodeSelected) {
+        if(nodeSelected){
+            document.body.style.cursor = "pointer"
+            if(this.TextInSceneManager.activeNodeForPopup != null){
+                if(this.TextInSceneManager.activeNodeForPopup.id == this.currentNodeId) return
             }
-            this.TextInSceneManager.removePopup()
-            document.body.style.cursor = "default"
-            return;
-        } 
-
-        if(this.TextInSceneManager.activeNodeForPopup != null){
-            document.body.style.cursor = "default"
-            if(this.TextInSceneManager.activeNodeForPopup.id == this.currentNodeId) return
-        }
-
-        document.body.style.cursor = "pointer"
-        const nodeObjSelected = this.listNodeElement.find(e => e.id == nodeSelected);
-        if (!nodeObjSelected || nodeObjSelected.type !== "leaf") {
-            if (this.currentNodeId !== null) {
-                this.resetHighlight();
+            
+            const nodeObjSelected = this.listNodeElement.find(e => e.id == nodeSelected);
+            if (!nodeObjSelected || nodeObjSelected.type !== "leaf") {
+                document.body.style.cursor = "default"
+                if (this.currentNodeId !== null) {
+                    this.resetHighlight();
+                }
+                return;
             }
-            return;
+            
+            if (this.currentNodeId === nodeObjSelected.id) {
+                return; 
+            }
+
+            this.currentNodeId = nodeObjSelected.id;
+
+            this.resetHighlight();
+
+            const listElementToGlow = this.pathFinder(nodeObjSelected);
+            this.lightPath(listElementToGlow);
         }
-
-        if (this.currentNodeId === nodeObjSelected.id) {
-            return; 
+        else{
+            document.body.style.cursor = "default"
+            if (this.TextInSceneManager.activeNodeForPopup == null) {
+                if (this.currentNodeId !== null) {
+                    this.resetHighlight();
+                    this.currentNodeId = null
+                }
+                this.TextInSceneManager.removePopup()
+                
+                return;
+            } 
         }
-
-        this.currentNodeId = nodeObjSelected.id;
-
-        this.resetHighlight();
-
-        const listElementToGlow = this.pathFinder(nodeObjSelected);
-        this.lightPath(listElementToGlow);
     }
 
 
