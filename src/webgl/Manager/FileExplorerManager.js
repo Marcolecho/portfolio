@@ -103,6 +103,7 @@ export class FileExplorerManager {
                 leafDiv.addEventListener('click', (e) => {
                     e.stopPropagation();
                     const meshSelected = this.treeManager.TextInSceneManager.showPopupOnNode(node.id, this.treeManager.listNodeElement);
+                    this.treeManager.highlightPathToNode(node.id);
                     this.cameraManager.focusOnNode(meshSelected)
                 });
 
