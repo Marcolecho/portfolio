@@ -15,7 +15,7 @@ const sceneManager = new SceneManager(scene, canvas,
 
 const elements = treeManager.createTree(gitTreeData)
 
-const fileExplorerManager = new FileExplorerManager(elements[0], treeManager)
+const fileExplorerManager = new FileExplorerManager(elements[0], treeManager, sceneManager.cameraManager)
 fileExplorerManager.createStructureFolder()
 sceneManager.render(() => {
   treeManager.TextInSceneManager.updateFloatingTextsProximity(sceneManager.camera)

@@ -39,7 +39,7 @@ export class SceneManager {
       this.controls.maxPolarAngle = Math.PI / 3;
       this.controls.screenSpacePanning = false;
 
-      this.CameraManager = new CameraManager(this.camera, this.controls)
+      this.cameraManager = new CameraManager(this.camera, this.controls)
 
       // pour l'effet néon
       const renderScene = new RenderPass(this.scene, this.camera);
@@ -84,7 +84,7 @@ export class SceneManager {
       const nodeElementId = nodeElement.userData.id
       eventNode(nodeElementId);
       if(typeEvent == 'click'){
-        this.CameraManager.focusOnNode(nodeElement)
+        this.cameraManager.focusOnNode(nodeElement)
       }
     } else {
       eventNode(null); 

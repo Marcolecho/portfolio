@@ -81,6 +81,8 @@ export class TextInSceneManager {
 
         this.activeNodeForPopup = nodeObjSelected;
         this.currentPopup = popupObject;
+
+        return nodeObjSelected.mesh
     }
 
     removePopup() {

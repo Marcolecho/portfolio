@@ -1,7 +1,8 @@
 export class FileExplorerManager {
-    constructor(listNodeElement, treeManager) {
+    constructor(listNodeElement, treeManager, cameraManager) {
         this.listNodeElement = listNodeElement
         this.treeManager = treeManager
+        this.cameraManager = cameraManager
     }
 
     createStructureFolder() {
@@ -101,7 +102,8 @@ export class FileExplorerManager {
 
                 leafDiv.addEventListener('click', (e) => {
                     e.stopPropagation();
-                    this.treeManager.TextInSceneManager.showPopupOnNode(node.id, this.treeManager.listNodeElement);
+                    const meshSelected = this.treeManager.TextInSceneManager.showPopupOnNode(node.id, this.treeManager.listNodeElement);
+                    this.cameraManager.focusOnNode(meshSelected)
                 });
 
                 const parentContainer = folderContainers.get(node.parent.id);

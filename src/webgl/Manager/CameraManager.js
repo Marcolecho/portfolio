@@ -8,7 +8,6 @@ export class CameraManager {
     }
 
     focusOnNode(nodeMesh) {
-        console.log(nodeMesh)
         if (!nodeMesh || nodeMesh.userData.type != "leaf") return;
 
         const targetPosition = new THREE.Vector3();
