@@ -14,7 +14,7 @@ export class FileExplorerManager {
         this.listNodeElement.forEach(node => {
             if (node.type === "root" || node.family == "Base") return;
 
-            // si il faut faire un dossier
+            // Si c'est un dossier (branch)
             if (node.type === "branch") {
                 const details = document.createElement('details');
                 details.id = `folder_${node.id}`;
@@ -23,15 +23,14 @@ export class FileExplorerManager {
                 const summary = document.createElement('summary');
                 summary.innerHTML = `
                     <span class="folder-header">
-                    <span class="chevron">▸</span>
-                    <span class="folder-title">${node.name}</span>
+                        <span class="chevron">➔</span>
+                        <span class="folder-title">${node.name}</span>
                     </span>
                 `;
 
-                // gestion de la transi ouverture/fermeture
+                // Gestion animation ouverture/fermeture
                 summary.addEventListener('click', (e) => {
                     e.preventDefault();
-
                     const content = childrenWrapper; 
 
                     if (details.open) {
@@ -41,8 +40,8 @@ export class FileExplorerManager {
                             { height: startHeight, opacity: 1 },
                             { height: '0px', opacity: 0 }
                         ], {
-                            duration: 250,
-                            easing: 'cubic-bezier(0.4, 0, 0.2, 1)'
+                            duration: 200,
+                            easing: 'cubic-bezier(0.16, 1, 0.3, 1)'
                         });
 
                         closingAnimation.onfinish = () => {
@@ -50,9 +49,7 @@ export class FileExplorerManager {
                         };
 
                         summary.querySelector('.chevron').style.transform = 'rotate(0deg)';
-                    } 
-                    
-                    else {
+                    } else {
                         details.setAttribute('open', ''); 
                         const targetHeight = `${childrenContainer.offsetHeight}px`; 
 
@@ -60,8 +57,8 @@ export class FileExplorerManager {
                             { height: '0px', opacity: 0 },
                             { height: targetHeight, opacity: 1 }
                         ], {
-                            duration: 250,
-                            easing: 'cubic-bezier(0.4, 0, 0.2, 1)'
+                            duration: 200,
+                            easing: 'cubic-bezier(0.16, 1, 0.3, 1)'
                         });
 
                         summary.querySelector('.chevron').style.transform = 'rotate(90deg)';
@@ -83,17 +80,16 @@ export class FileExplorerManager {
 
                 if (!node.parent || node.parent.type === "root" || node.parent.family == "Base") {
                     sectionExplorer.appendChild(details);
-                } 
-                else {
+                } else {
                     const parentContainer = folderContainers.get(node.parent.id);
                     if (parentContainer) parentContainer.appendChild(details);
                 }
             } 
-            else { // Element du dossier
+            else { // Élément fichier (leaf)
                 const leafDiv = document.createElement('div');
                 leafDiv.id = `leaf_${node.id}`;
                 leafDiv.className = 'file-node';
-                leafDiv.innerHTML = `• ${node.name}`;
+                leafDiv.textContent = node.name; 
 
                 leafDiv.addEventListener('mouseover', (e) => {
                     e.stopPropagation();
@@ -102,9 +98,13 @@ export class FileExplorerManager {
 
                 leafDiv.addEventListener('click', (e) => {
                     e.stopPropagation();
+                    
+                    document.querySelectorAll('.file-node').forEach(el => el.classList.remove('active'));
+                    leafDiv.classList.add('active');
+
                     const meshSelected = this.treeManager.TextInSceneManager.showPopupOnNode(node.id, this.treeManager.listNodeElement);
                     this.treeManager.highlightPathToNode(node.id);
-                    this.cameraManager.focusOnNode(meshSelected)
+                    this.cameraManager.focusOnNode(meshSelected);
                 });
 
                 const parentContainer = folderContainers.get(node.parent.id);
