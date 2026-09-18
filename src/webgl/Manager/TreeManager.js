@@ -51,7 +51,7 @@ export class TreeManager {
                     console.warn(`unknown family: ${element.family}`);
             }
 
-            const nodeElement = new NodeElement(element.id, element.label, element.description, element.type, element.family, positionElement, colorElementON, colorElementOFF, this.intensityON, this.intensityOFF, mesh)
+            const nodeElement = new NodeElement(element.id, element.label, element.description, element.pathfile, element.type, element.family, positionElement, colorElementON, colorElementOFF, this.intensityON, this.intensityOFF, mesh)
             this.listNodeElement.push(nodeElement);
             if(element.type == "branch"){
                 this.TextInSceneManager.floatingtextObjects.push(this.TextInSceneManager.addFloatingTextOnElement(nodeElement))

@@ -43,7 +43,19 @@ export class TextInSceneManager {
         });
     }
 
+    enterInNode(nodeObjSelected){
+        console.log(nodeObjSelected)
+        const modaleContainer = document.getElementById("modale-container")
+        modaleContainer.classList.add('active');
+        modaleContainer.classList.remove('is-closing');
 
+        const containerIframe = document.getElementById("container-iframe")
+
+        const iframe = document.createElement("iframe")
+        iframe.id = "iframe-window"
+        iframe.src = nodeObjSelected.linkHTML
+        containerIframe.appendChild(iframe)
+    }
 
     showPopupOnNode(nodeId, listNodeElement) {
         const nodeObjSelected = listNodeElement.find(e => e.id == nodeId);
@@ -69,6 +81,8 @@ export class TextInSceneManager {
         `;
 
         const popupObject = new CSS2DObject(popupDiv);
+        const button = popupDiv.querySelector('.popup-button');
+        button.addEventListener('click', () => this.enterInNode(nodeObjSelected));
 
         const boundingBox = new THREE.Box3().setFromObject(nodeObjSelected.mesh);
         const size = new THREE.Vector3();

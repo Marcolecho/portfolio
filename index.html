@@ -19,9 +19,20 @@
   </section>
 
   <section id="modale-container">
-    <section id="modale"></section>
+    <section id="modale">
+      <button class="close-btn" onclick="onCloseModale()">&times;</button>
+      <section id="container-iframe"></section>
+    </section>
   </section>
 
+  <script>
+    function onCloseModale(){
+      const modaleContainer = document.getElementById("modale-container")
+      modaleContainer.classList.remove('active');
+      modaleContainer.classList.add('is-closing');
+      document.getElementById("iframe-window").remove();
+    }
+  </script>
   <script type="module" src="./src/main.js"></script>
 </body>
 </html>
