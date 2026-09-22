@@ -279,6 +279,8 @@ summary:hover .folder-icon {
   display: flex; 
   pointer-events:all;
   animation: fadeInModale 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  backdrop-filter: blur(16px) saturate(180%);
+
 }
 
 #modale-container.is-closing  {
@@ -288,8 +290,6 @@ summary:hover .folder-icon {
 }
 
 #modale {
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
   border-radius: 12px; 
   border: 1px solid rgba(255, 255, 255, 0.08);
   background: rgba(10, 14, 23, 0.65); 
@@ -322,8 +322,8 @@ summary:hover .folder-icon {
 
 .close-btn {
   position: absolute;
-  top: 12px;
-  right: 12px;
+  top: 21px;
+  right: 21px;
   width: 50px;
   height: 50px;
   
@@ -529,7 +529,7 @@ summary:hover .folder-icon {
   letter-spacing: 1px;
   color: white;
   background: rgba(10, 15, 25, 0.65);
-  backdrop-filter: blur(6px); 
+  backdrop-filter: blur(6px);
   padding: 6px 14px;
   border-radius: 20px;
   border: 1px solid rgba(224, 253, 255, 0.4);
@@ -557,3 +557,7 @@ summary:hover .folder-icon {
   0 0 15px rgba(224, 253, 255, 0.4),
   inset 0 0 8px rgba(224, 253, 255, 0.4);
 }
+
+
+
+  

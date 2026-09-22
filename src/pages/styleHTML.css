@@ -9,6 +9,11 @@ body {
   font-family: 'Segoe UI', sans-serif; 
   color: #fff;
   display: flex;
+  flex-direction: column;
+  background: transparent;
+  padding: 30px;
+  line-height: 1.6;
+  height: 100vh;
 }
 
 .global-container{
@@ -24,4 +29,151 @@ body {
 
 .main-content{
     flex: 8;
+}
+
+
+
+.header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 16px;
+  margin-bottom: 20px;
+  flex: 1;
+}
+.badge {
+  display: inline-block;
+  background: rgba(0, 243, 255, 0.15);
+  color: #00f3ff;
+  border: 1px solid rgba(0, 243, 255, 0.3);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+h1 {
+  font-size: 40px;
+  color: #fff;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.date {
+  color: #94a3b8;
+  font-size: 16px
+}
+
+/* Description / Contexte */
+.description {
+  font-size: 17px;
+  color: #cbd5e1;
+  margin-bottom: 5vh;
+  flex: 1;
+}
+
+/* Section Titres */
+h2 {
+  font-size: 22px;
+  color: #38bdf8;
+  font-weight: 600;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Stack Technique (Badges) */
+.tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 3vh;
+}
+.tech-tag {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #f1f5f9;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 16px;
+}
+
+/* Liste des Réalisations */
+.feature-list {
+  list-style: none;
+  margin-bottom: 28px;
+}
+.feature-list li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 10px;
+  font-size: 17px;
+  color: #cbd5e1;
+}
+.feature-list li::before {
+  content: '-';
+  position: absolute;
+  left: 0;
+  color: #00f3ff;
+  font-weight: bolder;
+}
+
+
+.actions {
+  display: flex;
+  gap: 12px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  flex: 1;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.btn-primary {
+  background: #00f3ff;
+  color: #0a0e17;
+}
+.btn-primary:hover {
+  background: #38bdf8;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
+}
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.middle{
+  display: flex;
+  flex-direction:row;
+  flex: 12;
+}
+
+.left{
+  flex: 5;
+}
+
+.right{
+  flex: 5;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+
+}
+
+.right video{
+  width: 80%;
+  height: fit-content;
 }
