@@ -277,8 +277,8 @@ summary:hover .folder-icon {
 
 #modale-container.active {
   display: flex; 
-  pointer-events:all;
-  animation: fadeInModale 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  pointer-events: all;
+  animation: fadeInModale 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   backdrop-filter: blur(16px) saturate(180%);
 
 }
@@ -286,7 +286,7 @@ summary:hover .folder-icon {
 #modale-container.is-closing  {
   display: flex; 
   pointer-events: none;
-  animation: unfadeInModale 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: unfadeInModale 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 #modale {

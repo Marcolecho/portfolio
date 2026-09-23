@@ -1,18 +1,80 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../../styleHTML.css">
+    <link rel="stylesheet" href="../../../../styleHTML.css">
 </head>
 <body>
-    <section class="global-container">
-        <section class="title-container">
-            <h1>Hôtesse</h1>
-        </section>
-        <section class="main-content">
-            text
-        </section>
+
+    <!-- en-tête -->
+    <div class="header">
+        <span class="badge">Web</span>
+        <span class="badge">Stage entreprise</span>
+        <span class="badge">3D</span>
+        <h1>Hôtesse</h1>
+        <span class="date">Juin 2024 - Juillet 2024</span>
+    </div>
+
+    <!-- contexte -->
+    <p class="description">
+        Application à l'entrée d'un bâtiment sur un grand écran tactile<br>
+        Visualiser des vidéos ou naviguer dans une carte 3D du bâtiment<br>
+        Rechercher une personne ou sélectionner un bureau pour donner le chemin à parcourir et les gens présents dans le bureau<br> 
+        Application de gestion permettant de mettre à jour les vidéos et les personnes dans les bureaux<br>
+    </p>
+
+    <!-- stack -->
+    <section class="middle">
+        <div class="left">
+            <h2>Technologies & Outils</h2>
+            <div class="tech-stack">
+                <span class="tech-tag">HTML/CSS</span>
+                <span class="tech-tag">Javascript</span>
+                <span class="tech-tag">PHP</span>
+                <span class="tech-tag">Three.js</span>
+                <span class="tech-tag">C#</span>
+                <span class="tech-tag">PowerBuilder</span>
+                <span class="tech-tag">SQL Server</span>
+                <span class="tech-tag">IIS</span>
+            </div>
+
+            <!-- info -->
+            <h2>Détails</h2>
+            <ul class="feature-list">
+                <li>Réalisation de trois applications différentes travaillant ensemble
+                    <ul>
+                        <li>Application web contenant la carte 3D</li>
+                        <li>Application C# permettant de lancer diverses vidéos et l'application web</li>
+                        <li>Application PowerBuilder permettant de paramétrer les deux applications</li>
+                    </ul>
+                </li>
+                <li>Base de données connecté aux projets</li>
+                <li>Réunions clients en autonomie pour faire suivre l'avancement et prendre en compte les retours</li>
+                <li>Mise en ligne de la carte 3D sur un serveur windows interne avec IIS</li>
+                <br>
+                <li><strong>Hard Skills valorisés : </strong>Base de données, UI/UX</li>
+                <li><strong>Soft Skills valorisés : </strong>Autonomie, Communication</li>
+            </ul>
+        </div>
+        <div class="right">
+            <video controls>
+                <source src="./hotesse.mp4" type="video/mp4">
+                la vidéo n'est pas supportée par votre navigateur
+            </video>
+            <video controls>
+                <source src="./hotesse2.mp4" type="video/mp4">
+                la vidéo n'est pas supportée par votre navigateur
+            </video>
+        </div>
     </section>
+    
+
+    <!-- liens -->
+    <div class="actions">
+        <a href="./RAPPORT DE STAGE.pdf" target="_blank" class="btn btn-primary">Rapport de stage</a>
+        <a href="#" class="btn btn-secondary">Powerpoint</a>
+    </div>
+
 </body>
 </html>

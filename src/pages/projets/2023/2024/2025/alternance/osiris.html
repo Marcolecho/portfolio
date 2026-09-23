@@ -1,18 +1,73 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../../styleHTML.css">
+    <link rel="stylesheet" href="../../../../../styleHTML.css">
 </head>
 <body>
-    <section class="global-container">
-        <section class="title-container">
-            <h1>OSIRIS</h1>
-        </section>
-        <section class="main-content">
-            text
-        </section>
+
+    <!-- en-tête -->
+    <div class="header">
+        <span class="badge">Web</span>
+        <span class="badge">Alternance</span>
+        <span class="badge">Algorithmique</span>
+        <h1>Osiris</h1>
+        <span class="date">septembre 2023 - aujourd'hui</span>
+    </div>
+
+    <!-- contexte -->
+    <p class="description">
+        Application web de planification de lots de production de l'usine (similaire à un Gantt dynamique). Cette dernière permet d'automatiser et d'optimiser le suivi de la production. <br>
+        L'utilisation prévoir de mettre jour facilement le planning en cas de retard, pour ensuite permettre l'ananlyse des différentes cause de retard.<br>
+        Le logiciel prévoit de créer et modifier des recettes de lots pour ensuite les lancer sur le planning. Il est possible de gérer la main d'oeuvre necessaire et possédé, 
+        la consommation et production des réservoirs, la récupération des lots à produire via SAP et encore pleins d'autres fonctionnalités.
+    </p>
+
+    <!-- stack -->
+    <section class="middle">
+        <div class="left">
+            <h2>Technologies & Outils</h2>
+            <div class="tech-stack">
+                <span class="tech-tag">HTML/CSS</span>
+                <span class="tech-tag">Javascript</span>
+                <span class="tech-tag">PHP</span>
+                <span class="tech-tag">Snowflake</span>
+                <span class="tech-tag">python</span>
+                <span class="tech-tag">Node.js</span>
+                <span class="tech-tag">Socket.io</span>
+                <span class="tech-tag">SQL Server</span>
+                <span class="tech-tag">IIS</span>
+                <span class="tech-tag">pm2</span>
+            </div>
+
+            <!-- info -->
+            <h2>Détails</h2>
+            <ul class="feature-list">
+                <li>Développement de l'application web avec des technologies connus de tous</li>
+                <li>Dévelopement et optimisation d'algorithmes complexe</li>
+                <li>Algorithmique faite en procédures stockées SQL</li>
+                <li>Collecte des données SAP en passant par une API Node connecté à Snowflake</li>
+                <li>Aucune tolérance au bug car données sensibles</li>
+                <br>
+                <li><strong>Hard Skills valorisés : </strong>Base de données, Conception, Optimisation, Algorithmique</li>
+                <li><strong>Soft Skills valorisés : </strong>Résolution de problèmes, Relation client, Présentation, Gestion de la pression, Anglais</li>
+            </ul>
+        </div>
+        <div class="right">
+            <video controls>
+                <source src="./x.mp4" type="video/mp4">
+                la vidéo n'est pas supportée par votre navigateur
+            </video>
+        </div>
     </section>
+    
+
+    <!-- liens -->
+    <div class="actions">
+        <a href="./RAPPORT D'ALTERNANCE.pdf" target="_blank" class="btn btn-primary">Rapport d'alternance sur Osiris</a>
+        <a href="#" class="btn btn-secondary">Powerpoint</a>
+    </div>
+
 </body>
 </html>
