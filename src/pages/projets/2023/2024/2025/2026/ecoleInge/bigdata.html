@@ -1,18 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../../styleHTML.css">
+    <link rel="stylesheet" href="../../../../../../styleHTML.css">
 </head>
 <body>
-    <section class="global-container">
-        <section class="title-container">
-            <h1>Big Data</h1>
-        </section>
-        <section class="main-content">
-            text
-        </section>
+
+    <!-- en-tête -->
+    <div class="header">
+        <span class="badge">Big Data</span>
+        <span class="badge">Projet Ecole</span>
+        <span class="badge">Données</span>
+        <h1>Projet Big Data</h1>
+        <span class="date">Octobre 2026 - Octobre 2026</span>
+    </div>
+
+    <!-- contexte -->
+    <p class="description">
+        Dans le cadre d'un projet école en deuxième année d'école d'ingénieur, nous avons réaliser en équipe un projet autour de la Big DATA. <br>
+        Le but de ce projet était d'à partir d'une source hétérogène de données (BDD,excel,txt...), rendre un dashboard powerBi permettant de faire facilement comprendre les données. <br>
+        Ici, les données sont des données à caractère médical et nos clients fictifs sont différents hopitaux voulant exploiter leurs données. <br>
+    </p>
+
+    <!-- stack -->
+    <section class="middle">
+        <div class="left">
+            <h2>Technologies & Outils</h2>
+            <div class="tech-stack">
+                <span class="tech-tag">Talend Open studio for Big Data (TOSBD)</span>
+                <span class="tech-tag">HDFS</span>
+                <span class="tech-tag">Cloudera</span>
+                <span class="tech-tag">Apache Hive</span>
+                <span class="tech-tag">PowerBi</span>
+            </div>
+
+            <!-- info -->
+            <h2>Détails</h2>
+            <ul class="feature-list">
+                <li>Extraction et transformation des données avec TOSBD</li>
+                <li>Chargement dans hdfs des données transformés sur une machine virtuelle cloudera</li>
+                <li>Création des tables et chargement des données avec Apache Hive </li>
+                <li>Connection aux données Hive depuis PowerBi</li>
+                <li>Création d'un dashboard interactif avec PowerBi</li>
+                <br>
+                <li><strong>Hard Skills valorisés : </strong>SQL, PowerBi, Outils de BigData</li>
+                <li><strong>Soft Skills valorisés : </strong>Travail d'équipe, Leadership, Communication, Vulgarisation, Pédagogie</li>
+            </ul>
+        </div>
+        <div class="right">
+            <div class="carousel-container">
+                <div class="carousel-track">
+                    <div class="carousel-slide active">
+                        <img src="./photo1.png" alt="">
+                        <img src="./photo2.png" alt="">
+                    </div>
+                </div>
+
+                <button class="carousel-btn prev" id="carousel-prev" aria-label="Précédent">&#10094;</button>
+                <button class="carousel-btn next" id="carousel-next" aria-label="Suivant">&#10095;</button>
+
+                <div class="carousel-dots" id="carousel-dots"></div>
+            </div>
+        </div>
     </section>
+    
+
+    <!-- liens -->
+    <div class="actions">
+        <a href="./x.pdf" target="_blank" class="btn btn-primary">PowerBi</a>a>
+        <a href="./x." class="btn btn-secondary">Powerpoint</a>
+    </div>
+
 </body>
 </html>
+
+<script type="module" src="../../../../../../carrousselManagement.js"></script>

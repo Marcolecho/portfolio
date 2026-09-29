@@ -55,10 +55,21 @@
             </ul>
         </div>
         <div class="right">
-            <video controls>
-                <source src="./x.mp4" type="video/mp4">
-                la vidéo n'est pas supportée par votre navigateur
-            </video>
+            <div class="carousel-container">
+                <div class="carousel-track">
+                    <div class="carousel-slide active">
+                        <video controls>
+                            <source src="./x.mp4" type="video/mp4">
+                            la vidéo n'est pas supportée par votre navigateur
+                        </video>
+                    </div>
+                </div>
+
+                <button class="carousel-btn prev" id="carousel-prev" aria-label="Précédent">&#10094;</button>
+                <button class="carousel-btn next" id="carousel-next" aria-label="Suivant">&#10095;</button>
+
+                <div class="carousel-dots" id="carousel-dots"></div>
+            </div>
         </div>
     </section>
     
@@ -71,3 +82,6 @@
 
 </body>
 </html>
+
+
+<script type="module" src="../../../../../carrousselManagement.js"></script>

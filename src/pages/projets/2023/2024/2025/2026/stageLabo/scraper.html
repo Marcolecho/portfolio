@@ -1,18 +1,71 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../../styleHTML.css">
+    <link rel="stylesheet" href="../../../../../../styleHTML.css">
 </head>
 <body>
-    <section class="global-container">
-        <section class="title-container">
-            <h1>Scraper</h1>
-        </section>
-        <section class="main-content">
-            text
-        </section>
+
+    <!-- en-tête -->
+    <div class="header">
+        <span class="badge">Stage de recherche</span>
+        <h1>Scraper d'article scientifique</h1>
+        <span class="date">Juin 2026 - Juillet 2026</span>
+    </div>
+
+    <!-- contexte -->
+    <p class="description">
+        Dans le cadre d'une thèse pendant mon stage de recherche, J'ai dû réaliser un scraper d'article scientifique. <br>
+        L'objectif ici était de rassembler toutes les données existantes d'un sujet précis (solvant eutectique profond dissolvant la cellulose) <br>
+        La mission était donc de parcourir les différents sites d'articles scientifiques (Frontiers MDPI, PUBSACS, PUBSRSC, SCIENCEDIRECT/elsevier, SPRINGER, WILEY) et de télécharger les articles potentiellement interressant. <br>
+        Une fois les articles téléchargés, le texte et les tableaux sont lu pour ne récupérer que les passages interressant.
+    </p>
+
+    <!-- stack -->
+    <section class="middle">
+        <div class="left">
+            <h2>Technologies & Outils</h2>
+            <div class="tech-stack">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">Botasaurus</span>
+            </div>
+
+            <!-- info -->
+            <h2>Détails</h2>
+            <ul class="feature-list">
+                <li>Besoin d'être abonné aux différents site</li>
+                <li>Liste de mots necessaires pour valider ou non un pdf pertinent</li>
+                <li>Liste de mots validant un passage dans l'article à retenir</li>
+                <li>Textes et tableaux pertinent regroupé dans un pdf final</li>
+                <br>
+                <li><strong>Hard Skills valorisés : </strong>Python</li>
+                <li><strong>Soft Skills valorisés : </strong>Autonomie, Vulgarisation</li>
+            </ul>
+        </div>
+        <div class="right">
+            <div class="carousel-container">
+                <div class="carousel-track">
+                    <div class="carousel-slide active">
+                        <img src="./Schéma Scraper.png" alt="">
+                    </div>
+                </div>
+
+                <button class="carousel-btn prev" id="carousel-prev" aria-label="Précédent">&#10094;</button>
+                <button class="carousel-btn next" id="carousel-next" aria-label="Suivant">&#10095;</button>
+
+                <div class="carousel-dots" id="carousel-dots"></div>
+            </div>
+        </div>
     </section>
+
+    <!-- liens -->
+    <div class="actions">
+        <a href="https://github.com/Marcolecho/scraper_article_scientifique" target="_blank" class="btn btn-primary">Dépot</a>
+        <a href="./Schéma Scraper.pdf" target="_blank" class="btn btn-secondary">Schéma</a>
+    </div>
+
 </body>
 </html>
+
+<script type="module" src="../../../../../../carrousselManagement.js"></script>
