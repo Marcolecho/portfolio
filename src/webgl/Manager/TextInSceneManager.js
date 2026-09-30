@@ -44,7 +44,6 @@ export class TextInSceneManager {
     }
 
     enterInNode(nodeObjSelected){
-        console.log(nodeObjSelected)
         const modaleContainer = document.getElementById("modale-container")
         modaleContainer.classList.add('active');
         modaleContainer.classList.remove('is-closing');

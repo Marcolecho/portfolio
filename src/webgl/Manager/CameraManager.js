@@ -16,8 +16,6 @@ export class CameraManager {
         const offset = new THREE.Vector3(-45, 50, 50); 
         const newCameraPosition = targetPosition.clone().add(offset);
 
-        console.log(nodeMesh)
-
         gsap.to(this.controls.target, {
             x: targetPosition.x,
             y: targetPosition.y,

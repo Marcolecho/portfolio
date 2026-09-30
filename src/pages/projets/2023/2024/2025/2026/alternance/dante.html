@@ -1,18 +1,71 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../../styleHTML.css">
+    <link rel="stylesheet" href="../../../../../../styleHTML.css">
 </head>
 <body>
-    <section class="global-container">
-        <section class="title-container">
-            <h1>DANTE</h1>
-        </section>
-        <section class="main-content">
-            text
-        </section>
+
+    <!-- en-tête -->
+    <div class="header">
+        <span class="badge">Sécurité</span>
+        <span class="badge">Administration système</span>
+        <span class="badge">Données</span>
+        <h1>DANTE</h1>
+        <span class="date">septembre 2025 - Avril 2026</span>
+    </div>
+
+    <!-- contexte -->
+    <p class="description">
+        L'objectif de ce projet est de créer un système pouvant prendre la relève dans le cas où SAP tombe en panne. <br>
+        Ce projet vient de l'idée que si SAP tombe en panne, l'usine Sanofi Sisteron ne pourra fonctionner car toutes les données sont dans SAP <br>
+        Ce projet à donc pour but premièrement de collecter en parallèle toute les données permettant de faire fonctionner le site pendant une période futur donnée, 
+        Puis de permettre l'accessibilité et la modification de ces même données. <br>
+        Le système doit être extremement sécurisé autant d'un point de vue informatique que physique.
+    </p>
+
+    <!-- stack -->
+    <section class="middle">
+        <div class="left">
+            <h2>Technologies & Outils</h2>
+            <div class="tech-stack">
+                <span class="tech-tag">Powershell</span>
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">Bash</span>
+                <span class="tech-tag">SQL Server</span>
+                <span class="tech-tag">Postgresql</span>
+                <span class="tech-tag">Windows</span>
+                <span class="tech-tag">Linux</span>
+            </div>
+
+            <!-- info -->
+            <h2>Détails</h2>
+            <ul class="feature-list">
+                <li>En cours de développement</li>
+            </ul>
+        </div>
+        <div class="right">
+            <div class="carousel-container">
+                <div class="carousel-track">
+                    <div class="carousel-slide active">
+                    </div>
+                </div>
+
+                <button class="carousel-btn prev" id="carousel-prev" aria-label="Précédent">&#10094;</button>
+                <button class="carousel-btn next" id="carousel-next" aria-label="Suivant">&#10095;</button>
+
+                <div class="carousel-dots" id="carousel-dots"></div>
+            </div>
+        </div>
     </section>
+    
+
+    <!-- liens -->
+    <div class="actions">
+    </div>
+
 </body>
 </html>
+
+<script type="module" src="../../../../../../carrousselManagement.js"></script>

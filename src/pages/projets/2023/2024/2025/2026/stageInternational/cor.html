@@ -1,18 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../../styleHTML.css">
+    <link rel="stylesheet" href="../../../../../../styleHTML.css">
 </head>
 <body>
-    <section class="global-container">
-        <section class="title-container">
-            <h1>COR</h1>
-        </section>
-        <section class="main-content">
-            text
-        </section>
+
+    <!-- en-tête -->
+    <div class="header">
+        <span class="badge">Web</span>
+        <span class="badge">Stage à l'international</span>
+        <span class="badge">Optimisation</span>
+        <h1>COR</h1>
+        <span class="date">septembre 2026 - Octobre 2026</span>
+    </div>
+
+    <!-- contexte -->
+    <p class="description">
+        Ce projet à été réalisé pendant ma mobilité à l'international à Sanofi Scoppito<br>
+        L'objectif ici était de trouver une manière de réduire les temps de changements entre les lots de production (changeover). Les temps de changeovers dépendent des caractéristiques du lot précédent et suivant. <br>
+        Le but est donc de trouver la meilleur combinaison de lots réduisant donc le temps de changeover.
+    </p>
+
+    <!-- stack -->
+    <section class="middle">
+        <div class="left">
+            <h2>Technologies & Outils</h2>
+            <div class="tech-stack">
+                <span class="tech-tag">HTML/CSS</span>
+                <span class="tech-tag">Typescript</span>
+                <span class="tech-tag">Vue.js</span>
+                <span class="tech-tag">Node.js</span>
+                <span class="tech-tag">Python</span>
+            </div>
+
+            <!-- info -->
+            <h2>Détails</h2>
+            <ul class="feature-list">
+                <li>Première approche en python sans interface graphique renvoyant le meilleur chemin avec l'algorithme Held-Karp et bitmasking</li>
+                <li>Intégration d'une interface web et passage à Node.js et Typescript</li>
+                <li>Possibilité de drag&drop les lots pour voir évoluer le temps de changover</li>
+                <li>Ajout d'un algorithme de recherche Tabou à utiliser selon la quantité de lots en entrée</li>
+                <li>Ajout d'un système de lock, vérouillant un lot à une position donnée</li>
+                <br>
+                <li><strong>Hard Skills valorisés : </strong>Algorithmique, Optimisation</li>
+                <li><strong>Soft Skills valorisés : </strong>Autonomie, Vulgarisation, Communication oral</li>
+            </ul>
+        </div>
+        <div class="right">
+            <div class="carousel-container">
+                <div class="carousel-track">
+                    <div class="carousel-slide active">
+                        <img src="./COR.png" alt="">
+                    </div>
+                </div>
+
+                <button class="carousel-btn prev" id="carousel-prev" aria-label="Précédent">&#10094;</button>
+                <button class="carousel-btn next" id="carousel-next" aria-label="Suivant">&#10095;</button>
+
+                <div class="carousel-dots" id="carousel-dots"></div>
+            </div>
+        </div>
     </section>
+    
+
+    <!-- liens -->
+    <div class="actions">
+        <a href="./.pdf" target="_blank" class="btn btn-primary">Présentation</a>
+    </div>
+
 </body>
 </html>
+
+<script type="module" src="../../../../../../carrousselManagement.js"></script>
