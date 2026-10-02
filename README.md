@@ -25,3 +25,6 @@ bigdata
 
 ia
 - fonctionnement de l'appli / photo de l'appli
+
+rechercheoperationelle
+Powerpoint
