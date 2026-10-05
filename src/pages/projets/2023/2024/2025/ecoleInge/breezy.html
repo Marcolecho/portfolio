@@ -1,18 +1,82 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../../styleHTML.css">
+    <link rel="stylesheet" href="../../../../../../styleHTML.css">
 </head>
 <body>
-    <section class="global-container">
-        <section class="title-container">
-            <h1>Breezy</h1>
-        </section>
-        <section class="main-content">
-            text
-        </section>
+
+    <!-- en-tête -->
+    <div class="header">
+        <span class="badge">Projet Ecole</span>
+        <span class="badge">Web</span>
+        <span class="badge">Réseau social</span>
+        <h1>Breezy</h1>
+        <span class="date">Juin 2025 - Juin 2025</span>
+    </div>
+
+    <!-- contexte -->
+    <p class="description">
+        Dans le cadre d'un projet école, nous avions à développer une application web de type réseau social.<br>
+        Ce réseau social se devait d'être léger et réactif et devait avoir les mêmes fonctionnalités que X (Twitter) : 
+        Créer des posts courts et intéragir avec les autres utilisateurs, s'abonner, liker, notification...<br>
+    </p>
+
+    <!-- stack -->
+    <section class="middle">
+        <div class="left">
+            <h2>Technologies & Outils</h2>
+            <div class="tech-stack">
+                <span class="tech-tag">React</span>
+                <span class="tech-tag">Typescript</span>
+                <span class="tech-tag">Tailwind</span>
+                <span class="tech-tag">Mongoose/MongoDB</span>
+                <span class="tech-tag">Sequelize/MSSQL</span>
+                <span class="tech-tag">Github</span>
+                <span class="tech-tag">Docker</span>
+            </div>
+
+            <!-- info -->
+            <h2>Détails</h2>
+            <ul class="feature-list">
+                <li>Architecture microservice</li>
+                <li>Respect des règles d'architectures (Model/Controller/Route/Middleware)</li>
+                <li>Utilisation d'ORM pour les différens services</li>
+                <li>Containeurisation des différents services</li>
+                <br>
+                <li><strong>Hard Skills valorisés : </strong>Architecture logiciel, Technologies Web</li>
+                <li><strong>Soft Skills valorisés : </strong>Travail d'équipe, Leadership, Communication, Vulgarisation, Gestion de projets, Gestion des conflits</li>
+            </ul>
+        </div>
+        <div class="right">
+            <div class="carousel-container">
+                <div class="carousel-track">
+                    <div class="carousel-slide active">
+                        <img src="./.png" alt="">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="./archiBreezy.png" alt="">
+                    </div>
+                </div>
+
+                <button class="carousel-btn prev" id="carousel-prev" aria-label="Précédent">&#10094;</button>
+                <button class="carousel-btn next" id="carousel-next" aria-label="Suivant">&#10095;</button>
+
+                <div class="carousel-dots" id="carousel-dots"></div>
+            </div>
+        </div>
     </section>
+    
+
+    <!-- liens -->
+    <div class="actions">
+        <a href="https://github.com/Marcolecho/projetBreezy" target="_blank" class="btn btn-primary">Code</a>
+        <a href="./" target="_blank" class="btn btn-secondary">Présentation</a>
+        <a href="./archiBreezy.pdf" target="_blank" class="btn btn-secondary">Architecture</a>
+    </div>
+
 </body>
 </html>
+
+<script type="module" src="../../../../../carrousselManagement.js"></script>

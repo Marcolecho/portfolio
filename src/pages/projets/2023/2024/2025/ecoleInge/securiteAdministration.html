@@ -1,18 +1,85 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../../styleHTML.css">
+    <link rel="stylesheet" href="../../../../../../styleHTML.css">
 </head>
 <body>
-    <section class="global-container">
-        <section class="title-container">
-            <h1>Sécurité & administration</h1>
-        </section>
-        <section class="main-content">
-            text
-        </section>
+
+    <!-- en-tête -->
+    <div class="header">
+        <span class="badge">Projet Ecole</span>
+        <span class="badge">Sécurité</span>
+        <span class="badge">Administration</span>
+        <h1>Sécurité & Administration</h1>
+        <span class="date">Novembre 2024 - Décembre 2024</span>
+    </div>
+
+    <!-- contexte -->
+    <p class="description">
+        Dans le cadre d'un projet école, nous avions à protéger un système d'information d'une potentielle future attaque.<br>
+        Les objectifs de ce projet étaient de tout d'abord reproduire l'architecture du systeme d'information avec plusieurs machines virtuelles puis de mettre en place un active directory propre et hiérarchisé ainsi qu'un ERP. <br>
+        Nous devions aussi créer une politique de sauvegarde, de filtrage, une cartographie du système d'information (Administrative/logique/physique). <br>
+    </p>
+
+    <!-- stack -->
+    <section class="middle">
+        <div class="left">
+            <h2>Technologies & Outils</h2>
+            <div class="tech-stack">
+                <span class="tech-tag">VM ware</span>
+                <span class="tech-tag">Cisco packet tracer</span>
+                <span class="tech-tag">Pfsense</span>
+                <span class="tech-tag">Windows server</span>
+                <span class="tech-tag">Ubuntu</span>
+                <span class="tech-tag">Docker</span>
+            </div>
+
+            <!-- info -->
+            <h2>Détails</h2>
+            <ul class="feature-list">
+                <li>Prise en main d'active directory</li>
+                <li>Mise en place à d'un ERP
+                    <ul>
+                        <li>Serveur fronEnd Windows server avec IIS</li>
+                        <li>Serveur backEnd Ubuntu avec docker pour la gestion des bases de données</li>
+                    </ul>
+                </li>
+                <li>Firewall pfsense</li>
+                <li>Proxy squid</li>
+                <li>Sauvegarde 3-2-1 et RAID</li>
+                <br>
+                <li><strong>Hard Skills valorisés : </strong>Sécurité, Administration, Réseau</li>
+                <li><strong>Soft Skills valorisés : </strong>Travail d'équipe, Communication, Vulgarisation, Gestion de projets</li>
+            </ul>
+        </div>
+        <div class="right">
+            <div class="carousel-container">
+                <div class="carousel-track">
+                    <div class="carousel-slide active">
+                        <img src="./secuadmin.png" alt="">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="./secuadmin2.png" alt="">
+                    </div>
+                </div>
+
+                <button class="carousel-btn prev" id="carousel-prev" aria-label="Précédent">&#10094;</button>
+                <button class="carousel-btn next" id="carousel-next" aria-label="Suivant">&#10095;</button>
+
+                <div class="carousel-dots" id="carousel-dots"></div>
+            </div>
+        </div>
     </section>
+    
+
+    <!-- liens -->
+    <div class="actions">
+        <a href="./" target="_blank" class="btn btn-primary">Présentation</a>
+    </div>
+
 </body>
 </html>
+
+<script type="module" src="../../../../../carrousselManagement.js"></script>
