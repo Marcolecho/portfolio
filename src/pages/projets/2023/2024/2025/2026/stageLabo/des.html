@@ -9,19 +9,19 @@
 
     <!-- en-tête -->
     <div class="header">
-        <span class="badge">IA</span>
+        <span class="badge">Machine Learning</span>
         <span class="badge">Stage de recherche</span>
-        <h1>DES</h1>
+        <span class="badge">Data Science</span>
+        <h1>Génération & Filtrage de DES</h1>
         <span class="date">Juin 2026 - Juillet 2026</span>
     </div>
 
     <!-- contexte -->
     <p class="description">
-        Dans le cadre d'une thèse pendant mon stage de recherche, j'ai pu créer une IA permettant de générer des nouveaux DES (Deep Eutectic Solvant) à partir de pluieurs bases de données existante. <br>
-        Après avoir nettoyé, joint les différentes bases et amélioré le jeu de données, on entraine une IA avec Isolation Forest. Isolation Forest permet de renvoyer un score de proximité avec ses voisins. <br>
-        On test l'IA avec différents potentiel DES et différents ratios molaires afin de voir si c'est potentiel DES ou non et on stocke les solutions dans un fichier. <br>
-        On entre le résultat précédent dans une autre IA utilisant KNN pour ne ressortir seulement que les DES appartenant à un cluster d'au moins 3 points proches <br>
-        Cette IA permet de faire un élagage parmi une base de données volumineuse pour n'en sortir que les 3.5% des DES potentiels.
+        Conception d'un pipeline de Machine Learning destiné à la prédiction et au criblage virtuel de nouveaux solvants eutectiques profonds (DES - <i>Deep Eutectic Solvents</i>) à partir de plusieurs bases de données expérimentales.<br>
+        Après les étapes de nettoyage, de jointure et d'enrichissement du jeu de données, un modèle <b>Isolation Forest</b> est entraîné pour évaluer l'isolation statistique et la proximité des candidats potentiels selon différents ratios molaires.<br>
+        Les prédictions retenues sont ensuite traitées par un algorithme <b>k-means</b> afin d'isoler les DES appartenant à des clusters denses (au moins 3 voisins proches).<br>
+        Ce double filtrage permet un élagage ciblé sur une base de données volumineuse, ne conservant que les 3,5 % de candidats les plus prometteurs.<br>
     </p>
 
     <!-- stack -->
@@ -30,27 +30,28 @@
             <h2>Technologies & Outils</h2>
             <div class="tech-stack">
                 <span class="tech-tag">Python</span>
+                <span class="tech-tag">Scikit-Learn</span>
+                <span class="tech-tag">Pandas / NumPy</span>
             </div>
 
             <!-- info -->
             <h2>Détails</h2>
             <ul class="feature-list">
-                <li>Extraction des données existantes</li>
-                <li>Nettoyage des données</li>
-                <li>Préparation des données</li>
-                <li>Entrainement d'une IA IsolationForest</li>
-                <li>Création de données de test et utilisation d'IsolationForest</li>
-                <li>Entrainement et utilisation d'une IA KNN</li>
+                <li>Extraction, agrégation et nettoyage de données multi-sources</li>
+                <li>Features ajoutés et préparation des jeux de données de test</li>
+                <li>Détection d'anomalies et mesure de densité via <b>Isolation Forest</b></li>
+                <li>Filtrage spatial de données par <b>k-means</b></li>
+                <li>Réduction de la dimension du jeu de données et ciblage des DES à haut potentiel (élagage à 3,5 %)</li>
                 <br>
-                <li><strong>Hard Skills valorisés : </strong>IA, Python</li>
-                <li><strong>Soft Skills valorisés : </strong>Autonomie, Vulgarisation</li>
+                <li><strong>Hard Skills valorisés : </strong>Machine Learning, Data Preprocessing, Algorithmes non supervisés (Isolation Forest, k-means), Python</li>
+                <li><strong>Soft Skills valorisés : </strong>Autonomie, Rigueur scientifique, Esprit de synthèse, Vulgarisation technique</li>
             </ul>
         </div>
         <div class="right">
             <div class="carousel-container">
                 <div class="carousel-track">
                     <div class="carousel-slide active">
-                        <img src="./Schéma DES.png" alt="">
+                        <img src="./Schéma DES.png" alt="Schéma fonctionnel du pipeline de Machine Learning pour la génération de DES">
                     </div>
                 </div>
 
@@ -61,12 +62,11 @@
             </div>
         </div>
     </section>
-    
 
     <!-- liens -->
     <div class="actions">
-        <a href="https://github.com/Marcolecho/DES.git" target="_blank" class="btn btn-primary">Dépot</a>
-        <a href="./Schéma DES.pdf" target="_blank" class="btn btn-secondary">Schéma</a>
+        <a href="https://github.com/Marcolecho/DES.git" target="_blank" class="btn btn-primary">Voir le dépôt GitHub</a>
+        <a href="./Schéma DES.pdf" target="_blank" class="btn btn-secondary">Consulter le schéma</a>
     </div>
 
 </body>

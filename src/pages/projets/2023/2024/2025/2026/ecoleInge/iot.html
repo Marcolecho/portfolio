@@ -9,19 +9,18 @@
 
     <!-- en-tête -->
     <div class="header">
-        <span class="badge">IOT</span>
-        <span class="badge">Projet Ecole</span>
-        <span class="badge">Architecture</span>
-        <h1>Projet IOT</h1>
+        <span class="badge">IoT</span>
+        <span class="badge">Projet École</span>
+        <span class="badge">Architecture & Sécurité</span>
+        <h1>Éclairage Intelligent IoT</h1>
         <span class="date">Janvier 2026 - Février 2026</span>
     </div>
 
     <!-- contexte -->
     <p class="description">
-        Dans le cadre d'un projet école en deuxième année d'école d'ingénieur, nous avons réaliser en équipe un projet autour de l'IOT <br>
-        Le but de ce projet était de se familiariser avec la gestion de capteurs et la communications entre ces derniers et une unité central, ici un broker MQTT <br>
-        Le sujet choisi était de parvenir à l'aide de capteur de luminosité et de capteur de mouvement de savoir s'il était pertinent d'allumer ou non la lumière <br>
-        De plus le choix des protocoles de communication devait être justifié et les commuications sécurisés <br>
+        Conception et déploiement en équipe d'un système IoT d'éclairage intelligent et automatisé.<br>
+        L'objectif du projet était de coupler des capteurs de luminosité et de présence pour déterminer dynamiquement la pertinence de l'allumage des luminaires, tout en garantissant la sécurité des communications.<br>
+        L'architecture réseau repose sur un broker centralisé MQTT et des capteurs en Bluetooth, avec un choix formalisé et justifié des protocoles de transmission.<br>
     </p>
 
     <!-- stack -->
@@ -30,23 +29,23 @@
             <h2>Technologies & Outils</h2>
             <div class="tech-stack">
                 <span class="tech-tag">Arduino</span>
+                <span class="tech-tag">Raspberry Pi</span>
                 <span class="tech-tag">Python</span>
                 <span class="tech-tag">MQTT</span>
                 <span class="tech-tag">BLE</span>
-                <span class="tech-tag">FreeCad</span>
+                <span class="tech-tag">FreeCAD</span>
             </div>
 
             <!-- info -->
             <h2>Détails</h2>
             <ul class="feature-list">
-                <li>Utilisation de BLE pour la communication des arduinos avec capteurs de lumière à un raspberry</li>
-                <li>Utilisation d'un broker MQTT pour publier la luminosité</li>
-                <li>Connection au broker depuis les arduinos avec capteur de mouvement et aux lumières</li>
-                <li>Serveur web connecté aux raspberry pour héberger une application permettant de monitorer le système</li>
-                <li>Transfert de données sécurisés par différents méthodes</li>
+                <li>Communication à faible consommation via Bluetooth Low Energy (BLE) entre les modules Arduino (capteurs de luminosité) et une passerelle Raspberry Pi</li>
+                <li>Publication et réception des instructions via un broker MQTT centralisé</li>
+                <li>Déploiement d'un serveur web d'administration sur Raspberry Pi pour le monitoring temps réel de l'infrastructure</li>
+                <li>Sécurisation des flux de données et des protocoles de communication inter-équipements (TLS/AES/HMAC/HTTPS)</li>
                 <br>
-                <li><strong>Hard Skills valorisés : </strong>IOT, Sécurité, Système de communication, Déploiement, Gestion de projets</li>
-                <li><strong>Soft Skills valorisés : </strong>Travail d'équipe, Leadership, communication</li>
+                <li><strong>Hard Skills valorisés : </strong>Architecture IoT, Sécurité des Réseaux & Flux, Protocoles de Communication (MQTT, BLE), Systèmes Embarqués, Gestion de Projet</li>
+                <li><strong>Soft Skills valorisés : </strong>Travail en équipe, Leadership, Communication technique</li>
             </ul>
         </div>
         <div class="right">
@@ -54,12 +53,12 @@
                 <div class="carousel-track">
                     <div class="carousel-slide active">
                         <video controls>
-                        <source src="./iotVideo.mp4" type="video/mp4">
-                        La vidéo n'est pas supportée par votre navigateur
+                            <source src="./iotVideo.mp4" type="video/mp4">
+                            Votre navigateur ne supporte pas la lecture de vidéos.
                         </video>
                     </div>
                     <div class="carousel-slide">
-                        <img src="./schemaIOT.png" alt="">
+                        <img src="./schemaIOT.png" alt="Schéma de l'architecture réseau et de la sécurité du projet IoT">
                     </div>
                 </div>
 
@@ -70,11 +69,10 @@
             </div>
         </div>
     </section>
-    
 
     <!-- liens -->
     <div class="actions">
-        <a href="./ADS.pdf" target="_blank" class="btn btn-primary">Présentation</a>
+        <a href="./iot.pdf" target="_blank" class="btn btn-primary">Voir la présentation</a>
     </div>
 
 </body>

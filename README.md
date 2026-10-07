@@ -22,12 +22,15 @@
 bigdata
 - 2 photos du dashboard powerbi
 - lien du powerbi
+- powerpoint du powerbi
 
 ia
 - fonctionnement de l'appli / photo de l'appli
+- code de l'appli
 
 rechercheoperationelle
 - Powerpoint
+- changer la deuxième photo sans le cercle vert
 
 Breezy
 - Powerpoint
@@ -38,3 +41,8 @@ EasySafe
 
 Sécurité administration 
 - Présentation
+
+
+
+
+demander à nico des photos/videos de l'application streamlit

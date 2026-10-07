@@ -102,6 +102,8 @@ h2 {
 .feature-list {
   list-style: none;
   margin-bottom: 28px;
+  height: 35vh;
+  overflow-y: auto;
 }
 .feature-list li {
   position: relative;
@@ -288,4 +290,21 @@ li::marker {
   background: #00f3ff;
   box-shadow: 0 0 8px #00f3ff;
   transform: scale(1.2);
+}
+
+
+
+
+
+::-webkit-scrollbar {
+    width: 12px;
+    border-radius: 10px;
+    background: rgba(10, 14, 23, 0.65);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(0, 243, 255, 0.3);
+    color: #00f3ff;
+}
+::-webkit-scrollbar-thumb {
+    background: #00f3ff;
+    border-radius: 10px;
 }
