@@ -52,7 +52,7 @@ export const gitTreeData = [
     // --- PARCOURS ---
     {id: 5, pathfile:"", label: "Parcours", description:"Chronologie de ma formation et de mon expérience", family:"Parcours", type: "branch", position: { x: -5, y: 2, z: 0 }, children: [15]},
     {id: 15, pathfile:"", label: "2022-2024", description:"Première étape du cursus universitaire", family:"Parcours", type: "branch", position: { x: 7, y: 2, z: 3 }, children: [16,17,18]},
-    {id: 16, pathfile:"./src/pages/parcours/2022-2024/but.html", label: "BUT", description:"Formation initiale en informatique", family:"Parcours", type: "leaf", position: { x: 8, y: 2, z: 12 }, children: []},
+    {id: 16, pathfile:"./src/pages/parcours/2022-2024/but.html", label: "BUT", description:"License informatique", family:"Parcours", type: "leaf", position: { x: 8, y: 2, z: 12 }, children: []},
     {id: 17, pathfile:"./src/pages/parcours/2022-2024/stageAlternance.html", label: "Stage & Alternance", description:"Première immersion professionnelle en entreprise", family:"Parcours", type: "leaf", position: { x: 5, y: 2, z: -6 }, children: []},
     {id: 18, pathfile:"", label: "2025-2027", description:"Cycle ingénieur et spécialisation", family:"Parcours", type: "branch", position: { x: 20, y: 2, z: 8 }, children: [19,20,21,22]},
     {id: 19, pathfile:"./src/pages/parcours/2022-2024/2025-2027/stageInternational.html", label: "Stage International", description:"Expérience de travail à l'étranger", family:"Parcours", type: "leaf", position: { x: 21, y: 2, z: 0 }, children: []},

@@ -104,6 +104,14 @@ body {
   justify-content: space-between;
 }
 
+#big-title-sidebar{
+  align-self: center;
+  color: #f1f5f9;
+  font-size: 36px;
+  font-weight: 600;
+  margin-bottom: 1.5vh;
+}
+
 #file-explorer {
   padding: 12px;
   color: #94a3b8;
@@ -559,5 +567,31 @@ summary:hover .folder-icon {
 }
 
 
+.profile-container{
+  padding: 1vw;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.profile{
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+}
+.coordonnee{
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  border-radius: 16px;
+  margin: 0.5vw;
+}
 
-  
+.underTitle { 
+  color: #94a3b8;
+  font-size: 17px;
+  margin: 2px;
+
+}
+
+a{
+  color: #94a3b8;
+}
