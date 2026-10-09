@@ -586,12 +586,18 @@ summary:hover .folder-icon {
 }
 
 .underTitle { 
-  color: #94a3b8;
+  color: #ffffff;
   font-size: 17px;
   margin: 2px;
 
 }
 
+.link{
+  margin-top: 1vh;
+  display: flex;
+  flex-direction: column;
+}
+
 a{
-  color: #94a3b8;
+  color: #ffffff;
 }
